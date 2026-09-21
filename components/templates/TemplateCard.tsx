@@ -17,7 +17,7 @@ export function TemplateCard({
     <div className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] transition-all hover:-translate-y-1 hover:border-cyan-400/30">
       <div className="relative aspect-video">
         <Image
-          src={template.preview}
+          src={template.preview || "/placeholder.svg"}
           alt={template.name}
           fill
           className="object-cover transition duration-500 group-hover:scale-105"
