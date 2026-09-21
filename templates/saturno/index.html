@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Universo Saturno 3D</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="scene">
+    <!-- Estrellas de fondo -->
+    <div id="stars"></div>
+
+    <!-- Contenedor 3D principal -->
+    <div id="universe-3d">
+      <!-- Saturno + anillos 3D -->
+      <div id="saturn-system">
+        <div class="planet"></div>
+        <div class="ring ring-a"></div>
+        <div class="ring ring-b"></div>
+        <div class="ring ring-c"></div>
+        <div class="ring ring-d"></div>
+      </div>
+
+      <!-- Fotos flotando en el espacio 3D -->
+      <div class="photo-card photo-1">
+        <div class="photo-inner">
+          <img id="photo1" alt="Foto 1" />
+        </div>
+      </div>
+      <div class="photo-card photo-2">
+        <div class="photo-inner">
+          <img id="photo2" alt="Foto 2" />
+        </div>
+      </div>
+      <div class="photo-card photo-3">
+        <div class="photo-inner">
+          <img id="photo3" alt="Foto 3" />
+        </div>
+      </div>
+      <div class="photo-card photo-4">
+        <div class="photo-inner">
+          <img id="photo4" alt="Foto 4" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel de texto (ligeramente elevado) -->
+    <div id="content">
+      <h1 id="mainTitle"></h1>
+      <p id="subtitle"></p>
+      <div id="names">
+        <span id="toName"></span>
+        <span class="heart-icon">♥</span>
+        <span id="fromName"></span>
+      </div>
+      <p id="message"></p>
+    </div>
+
+    <!-- Corazones 3D -->
+    <div id="hearts-container"></div>
+  </div>
+
+  <audio id="bgMusic" loop></audio>
+  <script src="script.js"></script>
+</body>
+</html>

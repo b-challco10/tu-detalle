@@ -1,0 +1,346 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --heart-color: #ff6b9d;
+}
+
+body {
+  overflow: hidden;
+  background: #02020a;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #eef0ff;
+  height: 100vh;
+  width: 100vw;
+  perspective: 1200px;
+}
+
+#scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+/* ========== ESTRELLAS ========== */
+#stars {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 70%, #0d1525 0%, #02020a 70%);
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--dur) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* ========== UNIVERSO 3D ========== */
+#universe-3d {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+  animation: slowRotate 80s linear infinite;
+}
+
+@keyframes slowRotate {
+  from { transform: translate(-50%, -50%) rotateY(0deg); }
+  to   { transform: translate(-50%, -50%) rotateY(360deg); }
+}
+
+/* ========== SATURNO 3D ========== */
+#saturn-system {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
+  transform-style: preserve-3d;
+  animation: saturnSpin 45s linear infinite;
+  z-index: 2;
+}
+
+@keyframes saturnSpin {
+  from { transform: rotateY(0deg) rotateX(12deg); }
+  to   { transform: rotateY(360deg) rotateX(12deg); }
+}
+
+.planet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  margin: -65px 0 0 -65px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, #f8e9a0 0%, #e8c547 25%, #c9a227 55%, #8b6914 100%);
+  box-shadow:
+    inset -25px -15px 40px rgba(0,0,0,0.55),
+    0 0 50px rgba(232, 197, 71, 0.35),
+    0 0 100px rgba(232, 197, 71, 0.15);
+  transform-style: preserve-3d;
+}
+
+/* Anillos 3D (varios planos) */
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: transparent;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.ring-a {
+  width: 240px;
+  height: 240px;
+  margin: -120px 0 0 -120px;
+  border-width: 14px;
+  border-top-color: rgba(210, 190, 150, 0.75);
+  border-bottom-color: rgba(180, 160, 120, 0.35);
+  transform: rotateX(76deg);
+  box-shadow: 0 0 20px rgba(210, 190, 150, 0.25);
+}
+
+.ring-b {
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
+  border-width: 10px;
+  border-top-color: rgba(190, 170, 130, 0.55);
+  border-bottom-color: rgba(160, 140, 100, 0.25);
+  transform: rotateX(76deg);
+}
+
+.ring-c {
+  width: 320px;
+  height: 320px;
+  margin: -160px 0 0 -160px;
+  border-width: 7px;
+  border-top-color: rgba(170, 150, 110, 0.4);
+  border-bottom-color: rgba(140, 120, 80, 0.18);
+  transform: rotateX(76deg);
+}
+
+.ring-d {
+  width: 350px;
+  height: 350px;
+  margin: -175px 0 0 -175px;
+  border-width: 4px;
+  border-top-color: rgba(150, 130, 90, 0.25);
+  border-bottom-color: rgba(120, 100, 60, 0.1);
+  transform: rotateX(76deg);
+}
+
+/* ========== FOTOS 3D ========== */
+.photo-card {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  z-index: 5;
+}
+
+.photo-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 0 25px var(--heart-color);
+  background: #111;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Posiciones y órbitas 3D de las fotos */
+.photo-1 {
+  top: 18%;
+  left: 12%;
+  animation: orbit1 14s ease-in-out infinite;
+}
+
+.photo-2 {
+  top: 22%;
+  right: 14%;
+  animation: orbit2 16s ease-in-out infinite;
+}
+
+.photo-3 {
+  bottom: 18%;
+  left: 15%;
+  animation: orbit3 15s ease-in-out infinite;
+}
+
+.photo-4 {
+  bottom: 20%;
+  right: 12%;
+  animation: orbit4 17s ease-in-out infinite;
+}
+
+@keyframes orbit1 {
+  0%, 100% { transform: translateZ(80px) rotateY(-18deg) rotateX(8deg); }
+  50%      { transform: translateZ(140px) rotateY(12deg) rotateX(-6deg) translateY(-25px); }
+}
+
+@keyframes orbit2 {
+  0%, 100% { transform: translateZ(60px) rotateY(22deg) rotateX(-10deg); }
+  50%      { transform: translateZ(120px) rotateY(-15deg) rotateX(8deg) translateY(20px); }
+}
+
+@keyframes orbit3 {
+  0%, 100% { transform: translateZ(90px) rotateY(-12deg) rotateX(5deg); }
+  50%      { transform: translateZ(150px) rotateY(18deg) rotateX(-12deg) translateX(15px); }
+}
+
+@keyframes orbit4 {
+  0%, 100% { transform: translateZ(70px) rotateY(15deg) rotateX(-8deg); }
+  50%      { transform: translateZ(130px) rotateY(-20deg) rotateX(10deg) translateY(-18px); }
+}
+
+/* ========== CONTENIDO ========== */
+#content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(40px);
+  text-align: center;
+  z-index: 20;
+  max-width: 400px;
+  width: 90%;
+  padding: 24px 28px;
+  background: rgba(8, 8, 25, 0.72);
+  border-radius: 22px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 107, 157, 0.08);
+  transform-style: preserve-3d;
+}
+
+#mainTitle {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+}
+
+#subtitle {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+#names {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.heart-icon {
+  color: var(--heart-color);
+  font-size: 1.5rem;
+  animation: heartBeat 1.5s ease-in-out infinite;
+  text-shadow: 0 0 12px var(--heart-color);
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.3); }
+  50% { transform: scale(1.1); }
+}
+
+#message {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  opacity: 0.92;
+  white-space: pre-wrap;
+}
+
+/* ========== CORAZONES 3D ========== */
+.floating-heart {
+  position: absolute;
+  font-size: 20px;
+  color: var(--heart-color);
+  pointer-events: none;
+  text-shadow: 0 0 10px var(--heart-color);
+  transform-style: preserve-3d;
+  animation: rise3d linear forwards;
+  z-index: 15;
+}
+
+@keyframes rise3d {
+  0% {
+    transform: translateY(0) translateZ(0) scale(0.5) rotateY(0deg);
+    opacity: 0;
+  }
+  12% { opacity: 0.85; }
+  85% { opacity: 0.5; }
+  100% {
+    transform: translateY(-115vh) translateZ(180px) scale(1.4) rotateY(40deg);
+    opacity: 0;
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 700px) {
+  #saturn-system {
+    width: 200px;
+    height: 200px;
+    margin: -100px 0 0 -100px;
+  }
+  .planet {
+    width: 95px;
+    height: 95px;
+    margin: -47px 0 0 -47px;
+  }
+  .ring-a { width: 175px; height: 175px; margin: -87px 0 0 -87px; border-width: 10px; }
+  .ring-b { width: 205px; height: 205px; margin: -102px 0 0 -102px; border-width: 7px; }
+  .ring-c { width: 230px; height: 230px; margin: -115px 0 0 -115px; border-width: 5px; }
+  .ring-d { width: 250px; height: 250px; margin: -125px 0 0 -125px; border-width: 3px; }
+
+  .photo-card {
+    width: 100px;
+    height: 100px;
+  }
+
+  #content {
+    padding: 18px 16px;
+  }
+  #mainTitle { font-size: 1.45rem; }
+}

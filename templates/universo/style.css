@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050510;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  touch-action: none;
+  --primary: #ff66aa;
+  --secondary: #88ccff;
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+#ui {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.glass-panel {
+  pointer-events: none;
+  max-width: min(90vw, 480px);
+  text-align: center;
+  padding: 1.25rem 1.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.glass-panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#title {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.35rem;
+  color: var(--primary);
+  text-shadow: 0 0 24px color-mix(in srgb, var(--primary) 60%, transparent);
+  line-height: 1.2;
+}
+
+#subtitle {
+  font-size: clamp(0.95rem, 3vw, 1.25rem);
+  font-weight: 400;
+  opacity: 0.92;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--secondary);
+}
+
+#message {
+  font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+  line-height: 1.55;
+  opacity: 0.88;
+  white-space: pre-wrap;
+  color: #ffffff;
+}
+
+#musicBtn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 20;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  pointer-events: auto;
+}
+
+#musicBtn:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#musicBtn.playing {
+  box-shadow: 0 0 28px color-mix(in srgb, var(--primary) 55%, transparent);
+  background: color-mix(in srgb, var(--primary) 28%, transparent);
+}
+
+#hint {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 1.5s ease;
+}
+
+#hint.hidden {
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .glass-panel {
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+  }
+  #musicBtn {
+    width: 48px;
+    height: 48px;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    font-size: 1.3rem;
+  }
+  #hint {
+    bottom: 5.5rem;
+    font-size: 0.7rem;
+  }
+}

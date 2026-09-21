@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Universo de Amor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="ui">
+    <div class="glass-panel" id="panel">
+      <h1 id="title"></h1>
+      <h2 id="subtitle"></h2>
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <!-- Elementos ocultos para que la plataforma pueda inyectar datos por ID -->
+  <img id="photo1" crossorigin="anonymous" style="display:none" alt="" />
+  <img id="photo2" crossorigin="anonymous" style="display:none" alt="" />
+  <img id="photo3" crossorigin="anonymous" style="display:none" alt="" />
+  <audio id="bgMusic" loop preload="auto"></audio>
+
+  <button id="musicBtn" aria-label="Música">🎵</button>
+  <div id="hint">Arrastra para explorar · Pellizca para zoom</div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
