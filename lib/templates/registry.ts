@@ -69,6 +69,38 @@ export const templates: Template[] = [
     ],
   },
   {
+  id: "ramo-amarillo",
+  slug: "ramo-amarillo",
+  name: "Un ramo para ti",
+  description: "Ramo de flores amarillas interactivo con mensaje, galería de 4 fotos y música de fondo",
+  category: "Romántica",
+  preview: "/templates/ramo-amarillo.png",
+  active: true,
+  schema: [
+    {
+      id: "titulo",
+      type: "text",
+      label: "Título principal",
+      placeholder: "Para alguien que ilumina el cuarto",
+    },
+    {
+      id: "subtitulo",
+      type: "textarea",
+      label: "Mensaje o dedicatoria",
+      placeholder: "Escribe aquí tu mensaje especial...",
+    },
+    { id: "photo1", type: "image", label: "Foto 1" },
+    { id: "photo2", type: "image", label: "Foto 2" },
+    { id: "photo3", type: "image", label: "Foto 3" },
+    { id: "photo4", type: "image", label: "Foto 4" },
+    {
+      id: "bgMusic",
+      type: "audio",
+      label: "Música de fondo (opcional)",
+    },
+  ],
+},
+  {
     id: "love-galaxy",
     slug: "love-galaxy",
     name: "Tarjeta de Amor",

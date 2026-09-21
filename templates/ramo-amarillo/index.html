@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Un ramo para ti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <main class="scene">
+
+    <p class="eyebrow-free" id="titulo">Para alguien que ilumina el cuarto</p>
+
+    <div class="stage">
+      <div class="ground-glow"></div>
+
+      <button class="bouquet" id="flower" aria-label="Toca el ramo para revelar el mensaje" aria-expanded="false">
+
+        <!-- Hojas de eucalipto -->
+        <span class="euc euc-a"></span>
+        <span class="euc euc-b"></span>
+        <span class="euc euc-c"></span>
+        <span class="euc euc-d"></span>
+        <span class="euc euc-e"></span>
+        <span class="euc euc-f"></span>
+        <span class="euc euc-g"></span>
+        <span class="euc euc-h"></span>
+        <span class="euc euc-i"></span>
+
+        <!-- Tallos -->
+        <span class="stems">
+          <span class="stem s1"></span>
+          <span class="stem s2"></span>
+          <span class="stem s3"></span>
+          <span class="stem s4"></span>
+          <span class="stem s5"></span>
+          <span class="stem s6"></span>
+        </span>
+
+        <!-- ROSA PRINCIPAL -->
+        <span class="flower-unit rose main-rose">
+          <span class="petal outer o1"></span>
+          <span class="petal outer o2"></span>
+          <span class="petal outer o3"></span>
+          <span class="petal outer o4"></span>
+          <span class="petal outer o5"></span>
+          <span class="petal outer o6"></span>
+          <span class="petal outer o7"></span>
+          <span class="petal outer o8"></span>
+          <span class="petal mid m1"></span>
+          <span class="petal mid m2"></span>
+          <span class="petal mid m3"></span>
+          <span class="petal mid m4"></span>
+          <span class="petal mid m5"></span>
+          <span class="petal mid m6"></span>
+          <span class="petal inner i1"></span>
+          <span class="petal inner i2"></span>
+          <span class="petal inner i3"></span>
+          <span class="rose-center"></span>
+        </span>
+
+        <!-- CRISANTEMO POMPON -->
+        <span class="flower-unit chrys main-chrys">
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="chrys-center"></span>
+        </span>
+
+        <!-- ROSA SECUNDARIA -->
+        <span class="flower-unit rose side-rose">
+          <span class="petal outer o1"></span>
+          <span class="petal outer o2"></span>
+          <span class="petal outer o3"></span>
+          <span class="petal outer o4"></span>
+          <span class="petal outer o5"></span>
+          <span class="petal outer o6"></span>
+          <span class="petal outer o7"></span>
+          <span class="petal outer o8"></span>
+          <span class="petal mid m1"></span>
+          <span class="petal mid m2"></span>
+          <span class="petal mid m3"></span>
+          <span class="petal mid m4"></span>
+          <span class="rose-center"></span>
+        </span>
+
+        <!-- CLAVEL -->
+        <span class="flower-unit carnation">
+          <span class="car"></span><span class="car"></span><span class="car"></span><span class="car"></span>
+          <span class="car"></span><span class="car"></span><span class="car"></span><span class="car"></span>
+          <span class="car"></span><span class="car"></span>
+          <span class="car-center"></span>
+        </span>
+
+        <!-- CRISANTEMO PEQUEÑO -->
+        <span class="flower-unit chrys small-chrys">
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="cp"></span><span class="cp"></span><span class="cp"></span><span class="cp"></span>
+          <span class="chrys-center"></span>
+        </span>
+
+        <!-- ALSTROEMERIA -->
+        <span class="flower-unit alstro">
+          <span class="ap"></span><span class="ap"></span><span class="ap"></span>
+          <span class="ap"></span><span class="ap"></span><span class="ap"></span>
+          <span class="alstro-center"></span>
+        </span>
+
+        <!-- Capullos y flores pequeñas -->
+        <span class="bud b1"></span>
+        <span class="bud b2"></span>
+        <span class="bud b3"></span>
+        <span class="bud b4"></span>
+        <span class="mini-flower mf1"></span>
+        <span class="mini-flower mf2"></span>
+
+        <!-- Hojas verdes grandes -->
+        <span class="big-leaf bl1"></span>
+        <span class="big-leaf bl2"></span>
+        <span class="big-leaf bl3"></span>
+        <span class="big-leaf bl4"></span>
+        <span class="big-leaf bl5"></span>
+        <span class="big-leaf bl6"></span>
+        <span class="big-leaf bl7"></span>
+        <span class="big-leaf bl8"></span>
+        <span class="big-leaf bl9"></span> 
+      </button>
+    </div>
+
+    <button class="reveal-btn" id="revealBtn">Ábreme</button>
+
+    <section class="card" id="card" aria-live="polite">
+      <button class="card__close" id="closeCard" aria-label="Cerrar mensaje">×</button>
+      <p class="card__text" id="cardText"></p>
+      <span class="card__sign">— con cariño</span>
+    </section>
+
+    <!-- Botón Galería -->
+    <button id="galleryBtn" class="gallery-btn">💛 Nuestros Recuerdos</button>
+
+    <!-- Modal Carrusel -->
+    <div id="galleryModal" class="gallery-modal">
+      <div class="gallery-content">
+        <button id="closeGallery" class="close-btn">✕</button>
+        <div class="carousel">
+          <button id="prevBtn" class="nav-btn prev">‹</button>
+          <div class="carousel-track" id="carouselTrack"></div>
+          <button id="nextBtn" class="nav-btn next">›</button>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+    </div>
+
+    <!-- Audio y botón de música -->
+    <audio id="bgMusic" loop preload="auto"></audio>
+    <button id="musicBtn" aria-label="Música">🎵</button>
+
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
