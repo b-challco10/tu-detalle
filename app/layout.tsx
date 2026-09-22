@@ -1,4 +1,5 @@
 import "./globals.css";
+
 import type { Metadata } from "next";
 import { Geist, Playfair_Display } from "next/font/google";
 
@@ -33,12 +34,29 @@ export const metadata: Metadata = {
 
   authors: [{ name: "Tu Detalle" }],
 
+  creator: "Tu Detalle",
+  publisher: "Tu Detalle",
+  applicationName: "Tu Detalle",
+
   alternates: {
     canonical: "https://tu-detalle.com",
   },
 
+  robots: {
+    index: true,
+    follow: true,
+  },
+
   icons: {
-    icon: "/logo1.png",
+    icon: [
+      {
+        url: "/logo1.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    shortcut: ["/logo1.png"],
+    apple: ["/logo1.png"],
   },
 
   openGraph: {
@@ -49,6 +67,7 @@ export const metadata: Metadata = {
     siteName: "Tu Detalle",
     locale: "es_ES",
     type: "website",
+
     images: [
       {
         url: "/logo1.png",
@@ -70,12 +89,28 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Tu Detalle",
+    url: "https://tu-detalle.com",
+    logo: "https://tu-detalle.com/logo1.png",
+  };
+
   return (
     <html lang="es">
-      <body className={geist.className}>{children}</body>
+      <body className={geist.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
