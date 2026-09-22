@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Rosa en Frasco</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <canvas id="canvas"></canvas>
+
+  <!-- Título / dedicatoria (arriba) -->
+  <p class="titulo" id="titulo">Para ti, que floreces incluso en la oscuridad</p>
+
+  <!-- Botón principal para revelar mensaje -->
+  <button class="reveal-btn" id="revealBtn">Ábreme</button>
+
+  <!-- Tarjeta de mensaje -->
+  <section class="card" id="card" aria-live="polite">
+    <button class="card__close" id="closeCard" aria-label="Cerrar mensaje">×</button>
+    <p class="card__text" id="cardText"></p>
+    <span class="card__sign">— con cariño</span>
+  </section>
+
+  <!-- Botón Galería -->
+  <button id="galleryBtn" class="gallery-btn">🌹 Nuestros Recuerdos</button>
+
+  <!-- Modal Carrusel -->
+  <div id="galleryModal" class="gallery-modal">
+    <div class="gallery-content">
+      <button id="closeGallery" class="close-btn">✕</button>
+      <div class="carousel">
+        <button id="prevBtn" class="nav-btn prev">‹</button>
+        <div class="carousel-track" id="carouselTrack"></div>
+        <button id="nextBtn" class="nav-btn next">›</button>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </div>
+
+  <!-- Audio y botón de música -->
+  <audio id="bgMusic" loop preload="auto"></audio>
+  <button id="musicBtn" aria-label="Música">🎵</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

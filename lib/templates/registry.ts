@@ -147,6 +147,38 @@ export const templates: Template[] = [
     ],
   },
   {
+  id: "rosa-frasco",
+  slug: "rosa-frasco",
+  name: "Rosa en Frasco",
+  description: "Rosa eterna dentro de un frasco de cristal con pétalos cayendo, mensaje personalizado, galería de 4 fotos y música de fondo",
+  category: "Romántica",
+  preview: "/templates/rosa-frasco.png",
+  active: true,
+  schema: [
+    {
+      id: "titulo",
+      type: "text",
+      label: "Título principal",
+      placeholder: "Para ti, que floreces incluso en la oscuridad",
+    },
+    {
+      id: "subtitulo",
+      type: "textarea",
+      label: "Mensaje o dedicatoria",
+      placeholder: "Escribe aquí tu mensaje especial...",
+    },
+    { id: "photo1", type: "image", label: "Foto 1" },
+    { id: "photo2", type: "image", label: "Foto 2" },
+    { id: "photo3", type: "image", label: "Foto 3" },
+    { id: "photo4", type: "image", label: "Foto 4" },
+    {
+      id: "bgMusic",
+      type: "audio",
+      label: "Música de fondo (opcional)",
+    },
+  ],
+},
+  {
     id: "saturno",
     slug: "saturno",
     name: "Fotos flotantes",

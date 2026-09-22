@@ -1,0 +1,402 @@
+/* ============================================================
+   RESET Y BASE
+   ============================================================ */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  min-height: 100%;
+}
+
+body{
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  color: #f6ecc9;
+  font-family: "Work Sans", sans-serif;
+  position: relative;
+}
+
+canvas{
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ============================================================
+   TÍTULO / DEDICATORIA
+   ============================================================ */
+.titulo{
+  position: fixed;
+  top: 4.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 520px;
+  text-align: center;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.05rem, 4vw, 1.4rem);
+  color: #f6ecc9;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  z-index: 20;
+  pointer-events: none;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+  opacity: 0;
+  animation: fadeIn 2s ease 1.2s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-15px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ============================================================
+   BOTÓN "ÁBREME"
+   ============================================================ */
+.reveal-btn{
+  position: fixed;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+  letter-spacing: 0.03em;
+  color: #2a0011;
+  background: linear-gradient(180deg, #ff9ec9, #e0357f);
+  border: none;
+  padding: 0.9em 2.2em;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 22px rgba(224, 53, 127, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  animation: fadeIn 2s ease 2s forwards;
+}
+
+.reveal-btn:hover{
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 12px 28px rgba(224, 53, 127, 0.65);
+}
+
+.reveal-btn:active{
+  transform: translateX(-50%) translateY(0);
+}
+
+.reveal-btn:focus-visible{
+  outline: 2px solid #ff9ec9;
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   TARJETA DE MENSAJE
+   ============================================================ */
+.card{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 60;
+  width: min(88vw, 26rem);
+  background: linear-gradient(180deg, #1a0710, #0d0308);
+  border: 1px solid #7a0f4a;
+  border-radius: 1.2rem;
+  padding: clamp(1.6rem, 6vw, 2.4rem) clamp(1.4rem, 6vw, 2rem);
+  box-shadow:
+    0 0 0 1px rgba(255, 133, 184, 0.08) inset,
+    0 24px 50px rgba(0,0,0,0.65),
+    0 0 60px rgba(224, 53, 127, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+
+.card.is-visible{
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.card__close{
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #ff85b8;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.3rem;
+  transition: color 0.2s;
+}
+
+.card__close:hover{ color: #ffffff; }
+
+.card__text{
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.05rem, 4vw, 1.25rem);
+  line-height: 1.6;
+  color: #f6ecc9;
+  margin: 0 0 1rem;
+  min-height: 1.6em;
+}
+
+.card__sign{
+  display: block;
+  font-size: 0.85rem;
+  color: #ff85b8;
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+/* ============================================================
+   BOTÓN MÚSICA
+   ============================================================ */
+#musicBtn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 133, 184, 0.5);
+  background: rgba(224, 53, 127, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+#musicBtn:hover {
+  transform: scale(1.08);
+  background: rgba(224, 53, 127, 0.45);
+}
+#musicBtn.playing {
+  box-shadow: 0 0 24px rgba(255, 133, 184, 0.7);
+  background: rgba(224, 53, 127, 0.55);
+}
+
+/* ============================================================
+   BOTÓN GALERÍA (arriba a la derecha para no chocar)
+   ============================================================ */
+.gallery-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 40;
+  padding: 0.7rem 1.3rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 133, 184, 0.6);
+  background: rgba(224, 53, 127, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2.6vw, 1rem);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  animation: fadeInBtn 2s ease 2.5s forwards;
+}
+
+.gallery-btn:hover {
+  transform: scale(1.05);
+  background: rgba(224, 53, 127, 0.55);
+  box-shadow: 0 0 28px rgba(255, 133, 184, 0.6);
+}
+
+.gallery-btn.hidden {
+  display: none !important;
+}
+
+@keyframes fadeInBtn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   MODAL GALERÍA
+   ============================================================ */
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(5, 0, 3, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.gallery-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gallery-content {
+  position: relative;
+  width: min(92vw, 520px);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.close-btn:hover { background: rgba(224, 53, 127, 0.55); }
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.carousel-slide {
+  min-width: 100%;
+  aspect-ratio: 3/4;
+  background: #1a0710;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(224, 53, 127, 0.4);
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: background 0.2s;
+}
+.nav-btn:hover { background: rgba(224, 53, 127, 0.7); }
+.nav-btn.prev { left: 10px; }
+.nav-btn.next { right: 10px; }
+
+.dots {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.2rem;
+  justify-content: center;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+.dot.active {
+  background: #ff85b8;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(255, 133, 184, 0.7);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .titulo {
+    top: 4rem;
+    font-size: 1rem;
+  }
+  .reveal-btn {
+    bottom: 3.2rem;
+    padding: 0.8em 1.9em;
+  }
+  .gallery-btn {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.85rem;
+  }
+  #musicBtn {
+    width: 46px;
+    height: 46px;
+    bottom: 1.3rem;
+    right: 1.2rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .titulo {
+    top: 3.5rem;
+    font-size: 0.95rem;
+  }
+  .reveal-btn {
+    bottom: 2.8rem;
+    font-size: 0.9rem;
+    padding: 0.75em 1.7em;
+  }
+  .gallery-btn {
+    font-size: 0.8rem;
+    padding: 0.55rem 1rem;
+  }
+}
