@@ -52,7 +52,6 @@ export function ShareBar() {
     }
   }
 
-  // ShareBar oculta
   if (hidden) {
     return (
       <button
@@ -72,11 +71,13 @@ export function ShareBar() {
           hover:scale-105
           hover:bg-slate-900
           active:scale-95
+
+          md:p-3.5
         "
         title="Mostrar barra"
         aria-label="Mostrar barra de compartir"
       >
-        <ChevronUp className="h-5 w-5" />
+        <ChevronUp className="h-5 w-5 md:h-6 md:w-6" />
       </button>
     );
   }
@@ -86,13 +87,9 @@ export function ShareBar() {
       className="
         fixed bottom-4 left-1/2 z-50
         flex -translate-x-1/2
-        items-center
-        justify-center
-
-        /* Nunca ocupar más que la pantalla */
+        items-center justify-center
         w-max
         max-w-[calc(100vw-16px)]
-
         overflow-hidden
         rounded-2xl
         border border-white/10
@@ -101,19 +98,21 @@ export function ShareBar() {
         shadow-2xl shadow-black/80
         backdrop-blur-xl
 
-        sm:p-1.5
-        lg:gap-1.5
+        /* TABLET */
+        md:gap-1.5
+        md:p-2
+
+        /* LAPTOP */
+        lg:gap-2
         lg:p-2
       "
     >
-      {/* ==================== COPIAR ==================== */}
+      {/* COPIAR */}
       <button
         onClick={copyLink}
         className="
-          flex
-          shrink-0
-          items-center
-          justify-center
+          flex shrink-0
+          items-center justify-center
           rounded-xl
           p-2
           text-white
@@ -121,33 +120,34 @@ export function ShareBar() {
           hover:bg-white/10
           active:scale-95
 
+          /* Tablet */
+          md:p-3
+
+          /* Laptop */
           lg:gap-2
           lg:px-4
-          lg:py-2
+          lg:py-2.5
         "
         title="Copiar enlace"
         aria-label="Copiar enlace"
       >
         {copied ? (
-          <Check className="h-4 w-4 text-emerald-400" />
+          <Check className="h-4 w-4 text-emerald-400 md:h-5 md:w-5" />
         ) : (
-          <Copy className="h-4 w-4" />
+          <Copy className="h-4 w-4 md:h-5 md:w-5" />
         )}
 
-        {/* Texto solamente desde 1024px */}
         <span className="hidden text-sm font-medium lg:inline">
           {copied ? "Copiado" : "Copiar"}
         </span>
       </button>
 
-      {/* ==================== WHATSAPP ==================== */}
+      {/* WHATSAPP */}
       <button
         onClick={openWhatsApp}
         className="
-          flex
-          shrink-0
-          items-center
-          justify-center
+          flex shrink-0
+          items-center justify-center
           rounded-xl
           p-2
           text-emerald-400
@@ -155,28 +155,30 @@ export function ShareBar() {
           hover:bg-emerald-500/10
           active:scale-95
 
+          /* Tablet */
+          md:p-3
+
+          /* Laptop */
           lg:gap-2
           lg:px-4
-          lg:py-2
+          lg:py-2.5
         "
         title="Compartir en WhatsApp"
         aria-label="Compartir en WhatsApp"
       >
-        <MessageCircle className="h-4 w-4" />
+        <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
 
         <span className="hidden text-sm font-medium lg:inline">
           WhatsApp
         </span>
       </button>
 
-      {/* ==================== COMPARTIR ==================== */}
+      {/* COMPARTIR */}
       <button
         onClick={share}
         className="
-          flex
-          shrink-0
-          items-center
-          justify-center
+          flex shrink-0
+          items-center justify-center
           rounded-xl
           p-2
           text-cyan-300
@@ -184,31 +186,33 @@ export function ShareBar() {
           hover:bg-cyan-500/10
           active:scale-95
 
+          /* Tablet */
+          md:p-3
+
+          /* Laptop */
           lg:gap-2
           lg:px-4
-          lg:py-2
+          lg:py-2.5
         "
         title="Compartir"
         aria-label="Compartir"
       >
-        <Share2 className="h-4 w-4" />
+        <Share2 className="h-4 w-4 md:h-5 md:w-5" />
 
         <span className="hidden text-sm font-medium lg:inline">
           Compartir
         </span>
       </button>
 
-      {/* ==================== SEPARADOR ==================== */}
-      <div className="mx-0.5 h-5 w-px shrink-0 bg-white/10" />
+      {/* SEPARADOR */}
+      <div className="mx-0.5 h-5 w-px shrink-0 bg-white/10 md:h-6" />
 
-      {/* ==================== CREAR ==================== */}
+      {/* CREAR */}
       <Link
         href="/plantillas"
         className="
-          flex
-          shrink-0
-          items-center
-          justify-center
+          flex shrink-0
+          items-center justify-center
           rounded-xl
           bg-gradient-to-r
           from-blue-600
@@ -222,31 +226,33 @@ export function ShareBar() {
           hover:scale-105
           active:scale-95
 
+          /* Tablet */
+          md:p-3
+
+          /* Laptop */
           lg:gap-2
           lg:px-4
-          lg:py-2
+          lg:py-2.5
         "
         title="Crear otra"
         aria-label="Crear otra"
       >
-        <Plus className="h-4 w-4" />
+        <Plus className="h-4 w-4 md:h-5 md:w-5" />
 
         <span className="hidden text-sm font-semibold lg:inline">
           Crear otra
         </span>
       </Link>
 
-      {/* ==================== SEPARADOR ==================== */}
-      <div className="mx-0.5 h-5 w-px shrink-0 bg-white/10" />
+      {/* SEPARADOR */}
+      <div className="mx-0.5 h-5 w-px shrink-0 bg-white/10 md:h-6" />
 
-      {/* ==================== OCULTAR ==================== */}
+      {/* OCULTAR */}
       <button
         onClick={() => setHidden(true)}
         className="
-          flex
-          shrink-0
-          items-center
-          justify-center
+          flex shrink-0
+          items-center justify-center
           rounded-xl
           p-2
           text-slate-400
@@ -254,11 +260,14 @@ export function ShareBar() {
           hover:bg-white/10
           hover:text-white
           active:scale-95
+
+          /* Tablet */
+          md:p-3
         "
         title="Ocultar barra"
         aria-label="Ocultar barra de compartir"
       >
-        <ChevronDown className="h-4 w-4" />
+        <ChevronDown className="h-4 w-4 md:h-5 md:w-5" />
       </button>
     </div>
   );
