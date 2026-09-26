@@ -2,16 +2,20 @@
 
 import Link from "next/link";
 import { useState } from "react";
+
 import {
   Copy,
   Share2,
   Plus,
   Check,
   MessageCircle,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 
 export function ShareBar() {
   const [copied, setCopied] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   async function copyLink() {
     try {
@@ -48,60 +52,214 @@ export function ShareBar() {
     }
   }
 
+  // ShareBar oculta
+  if (hidden) {
+    return (
+      <button
+        onClick={() => setHidden(false)}
+        className="
+          fixed bottom-4 left-1/2 z-50
+          flex -translate-x-1/2
+          items-center justify-center
+          rounded-full
+          border border-white/10
+          bg-slate-950/95
+          p-3
+          text-white
+          shadow-2xl shadow-black/80
+          backdrop-blur-xl
+          transition
+          hover:scale-105
+          hover:bg-slate-900
+          active:scale-95
+        "
+        title="Mostrar barra"
+        aria-label="Mostrar barra de compartir"
+      >
+        <ChevronUp className="h-5 w-5" />
+      </button>
+    );
+  }
+
   return (
-    <div className="fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 items-center gap-1.5 sm:gap-2 rounded-2xl border border-white/10 bg-slate-950/85 p-1.5 sm:p-2 backdrop-blur-xl shadow-2xl shadow-black/80 max-w-[95vw] sm:max-w-none">
-      
-      {/* Botón Copiar */}
+    <div
+      className="
+        fixed bottom-4 left-1/2 z-50
+        flex -translate-x-1/2
+        items-center
+        justify-center
+
+        /* Nunca ocupar más que la pantalla */
+        w-max
+        max-w-[calc(100vw-16px)]
+
+        overflow-hidden
+        rounded-2xl
+        border border-white/10
+        bg-slate-950/90
+        p-1
+        shadow-2xl shadow-black/80
+        backdrop-blur-xl
+
+        sm:p-1.5
+        lg:gap-1.5
+        lg:p-2
+      "
+    >
+      {/* ==================== COPIAR ==================== */}
       <button
         onClick={copyLink}
-        className="flex items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white transition hover:bg-white/10 active:scale-95"
+        className="
+          flex
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          p-2
+          text-white
+          transition
+          hover:bg-white/10
+          active:scale-95
+
+          lg:gap-2
+          lg:px-4
+          lg:py-2
+        "
         title="Copiar enlace"
+        aria-label="Copiar enlace"
       >
         {copied ? (
-          <>
-            <Check className="h-4 w-4 text-emerald-400 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Copiado</span>
-          </>
+          <Check className="h-4 w-4 text-emerald-400" />
         ) : (
-          <>
-            <Copy className="h-4 w-4 shrink-0" />
-            <span className="hidden xs:inline sm:inline">Copiar</span>
-          </>
+          <Copy className="h-4 w-4" />
         )}
+
+        {/* Texto solamente desde 1024px */}
+        <span className="hidden text-sm font-medium lg:inline">
+          {copied ? "Copiado" : "Copiar"}
+        </span>
       </button>
 
-      {/* Botón WhatsApp */}
+      {/* ==================== WHATSAPP ==================== */}
       <button
         onClick={openWhatsApp}
-        className="flex items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-emerald-400 transition hover:bg-emerald-500/10 active:scale-95"
+        className="
+          flex
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          p-2
+          text-emerald-400
+          transition
+          hover:bg-emerald-500/10
+          active:scale-95
+
+          lg:gap-2
+          lg:px-4
+          lg:py-2
+        "
         title="Compartir en WhatsApp"
+        aria-label="Compartir en WhatsApp"
       >
-        <MessageCircle className="h-4 w-4 shrink-0" />
-        <span className="hidden sm:inline">WhatsApp</span>
+        <MessageCircle className="h-4 w-4" />
+
+        <span className="hidden text-sm font-medium lg:inline">
+          WhatsApp
+        </span>
       </button>
 
-      {/* Botón Compartir NATIVO */}
+      {/* ==================== COMPARTIR ==================== */}
       <button
         onClick={share}
-        className="flex items-center justify-center gap-2 rounded-xl px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-cyan-300 transition hover:bg-cyan-500/10 active:scale-95"
+        className="
+          flex
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          p-2
+          text-cyan-300
+          transition
+          hover:bg-cyan-500/10
+          active:scale-95
+
+          lg:gap-2
+          lg:px-4
+          lg:py-2
+        "
         title="Compartir"
+        aria-label="Compartir"
       >
-        <Share2 className="h-4 w-4 shrink-0" />
-        <span className="hidden sm:inline">Compartir</span>
+        <Share2 className="h-4 w-4" />
+
+        <span className="hidden text-sm font-medium lg:inline">
+          Compartir
+        </span>
       </button>
 
-      {/* Separador vertical sutil */}
-      <div className="h-5 w-[1px] bg-white/10 mx-0.5" />
+      {/* ==================== SEPARADOR ==================== */}
+      <div className="mx-0.5 h-5 w-px shrink-0 bg-white/10" />
 
-      {/* Botón CTA Crear */}
+      {/* ==================== CREAR ==================== */}
       <Link
         href="/plantillas"
-        className="flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition hover:scale-105 active:scale-95 shrink-0"
+        className="
+          flex
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          bg-gradient-to-r
+          from-blue-600
+          via-cyan-500
+          to-emerald-400
+          p-2
+          text-white
+          shadow-lg
+          shadow-cyan-500/20
+          transition
+          hover:scale-105
+          active:scale-95
+
+          lg:gap-2
+          lg:px-4
+          lg:py-2
+        "
+        title="Crear otra"
+        aria-label="Crear otra"
       >
-        <Plus className="h-4 w-4 shrink-0" />
-        <span>Crear <span className="hidden xs:inline">otra</span></span>
+        <Plus className="h-4 w-4" />
+
+        <span className="hidden text-sm font-semibold lg:inline">
+          Crear otra
+        </span>
       </Link>
 
+      {/* ==================== SEPARADOR ==================== */}
+      <div className="mx-0.5 h-5 w-px shrink-0 bg-white/10" />
+
+      {/* ==================== OCULTAR ==================== */}
+      <button
+        onClick={() => setHidden(true)}
+        className="
+          flex
+          shrink-0
+          items-center
+          justify-center
+          rounded-xl
+          p-2
+          text-slate-400
+          transition
+          hover:bg-white/10
+          hover:text-white
+          active:scale-95
+        "
+        title="Ocultar barra"
+        aria-label="Ocultar barra de compartir"
+      >
+        <ChevronDown className="h-4 w-4" />
+      </button>
     </div>
   );
 }

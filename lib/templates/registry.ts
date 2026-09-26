@@ -196,6 +196,38 @@ export const templates: Template[] = [
     },
   ],
 },
+{
+  id: "arbol-amor",
+  slug: "arbol-amor",
+  name: "Árbol del Amor Eterno",
+  description: "Árbol fractal que florece con corazones al hacer clic, luciérnagas, pétalos cayendo, carta dedicatoria, galería de 4 fotos y música de fondo",
+  category: "Romántica",
+  preview: "/templates/arbol-amor.png",
+  active: true,
+  schema: [
+    {
+      id: "titulo",
+      type: "text",
+      label: "Título principal",
+      placeholder: "Árbol del Amor",
+    },
+    {
+      id: "subtitulo",
+      type: "textarea",
+      label: "Mensaje / Carta dedicatoria",
+      placeholder: "Escribe aquí tu carta especial...",
+    },
+    { id: "photo1", type: "image", label: "Foto 1" },
+    { id: "photo2", type: "image", label: "Foto 2" },
+    { id: "photo3", type: "image", label: "Foto 3" },
+    { id: "photo4", type: "image", label: "Foto 4" },
+    {
+      id: "bgMusic",
+      type: "audio",
+      label: "Música de fondo (opcional)",
+    },
+  ],
+},
   {
     id: "love-galaxy",
     slug: "love-galaxy",

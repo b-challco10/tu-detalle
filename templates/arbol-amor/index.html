@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Árbol del Amor Eterno</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="relative min-h-screen w-full overflow-hidden">
+
+  <!-- Canvas -->
+  <canvas id="treeCanvas" class="fixed inset-0 z-0 w-full h-full cursor-pointer"></canvas>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-20 p-3 sm:p-6 flex justify-between items-start pointer-events-none">
+    <div class="pointer-events-auto flex items-center space-x-3 glass-panel px-3 py-2 rounded-2xl">
+      <div class="w-9 h-9 rounded-full flex items-center justify-center text-pink-300 text-lg bg-black/30">
+        🌸
+      </div>
+      <div class="hidden sm:block">
+        <h1 id="titulo" class="font-serif-title text-base sm:text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-200 via-rose-300 to-amber-200">
+          Árbol del Amor
+        </h1>
+        <p class="text-[10px] text-pink-200/70">Un rincón vivo dedicado a ti</p>
+      </div>
+    </div>
+
+    <div class="pointer-events-auto flex items-center gap-2">
+      <button id="galleryBtn" class="glass-btn text-[10px] sm:text-xs px-3 py-2 rounded-full text-pink-100 flex items-center gap-1" aria-label="Galería">
+        📸 <span class="hidden sm:inline">Recuerdos</span>
+      </button>
+      <button id="musicBtn" class="glass-btn text-[10px] sm:text-xs px-3 py-2 rounded-full text-pink-100 flex items-center gap-1" aria-label="Música">
+        <span id="audioIcon">🎵</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hint superior centrado -->
+  <div class="fixed top-16 sm:top-24 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-full px-4">
+    <p class="text-center text-[10px] sm:text-xs text-pink-200/80 font-light bg-black/40 backdrop-blur-md px-4 py-2 rounded-full max-w-md mx-auto border border-pink-500/20">
+      ✨ Toca las ramas para hacer florecer corazones
+    </p>
+  </div>
+
+  <!-- Acciones inferiores (encima de la placa) -->
+  <div class="fixed left-0 right-0 z-20 flex justify-center gap-2 px-3 pointer-events-none"
+       style="bottom: 6.5rem;">
+    <button id="regrowTreeBtn" class="pointer-events-auto glass-btn text-[10px] sm:text-xs px-4 py-2 rounded-full text-pink-200 flex items-center gap-1 shadow-lg">
+      🌱 <span>Florecer</span>
+    </button>
+    <button id="openLetterBtn" class="pointer-events-auto glass-btn text-[10px] sm:text-xs px-4 py-2 rounded-full text-amber-100 flex items-center gap-1 shadow-lg">
+      💌 <span>Carta</span>
+    </button>
+  </div>
+
+  <!-- Modal Carta -->
+  <div id="letterModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="glass-panel max-w-lg w-full p-6 sm:p-10 rounded-3xl relative border border-pink-300/30 max-h-[85vh] flex flex-col shadow-2xl">
+      <button id="closeLetterBtn" class="absolute top-4 right-4 text-pink-300 hover:text-white text-xl p-2 focus:outline-none">✕</button>
+      <div class="text-center mb-4">
+        <span class="text-4xl">🌸</span>
+        <h3 class="font-romantic text-3xl sm:text-5xl text-amber-100 mt-2">Para Mi Persona Especial</h3>
+      </div>
+      <div id="letterBody" class="flex-1 overflow-y-auto pr-2 text-pink-100 text-sm sm:text-base leading-relaxed font-light space-y-4 font-serif-title italic"></div>
+      <div class="text-right pt-4 border-t border-pink-200/10 mt-4">
+        <p class="font-romantic text-xl sm:text-2xl text-amber-200">Eternamente tuyo ❤️</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Galería -->
+  <div id="galleryModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="glass-panel max-w-lg w-full p-4 sm:p-6 rounded-3xl relative border border-pink-300/30 shadow-2xl">
+      <button id="closeGallery" class="absolute top-4 right-4 text-pink-300 hover:text-white text-xl p-2 focus:outline-none z-10">✕</button>
+      <div class="carousel relative w-full overflow-hidden rounded-2xl mt-2">
+        <button id="prevBtn" class="nav-btn prev">‹</button>
+        <div class="carousel-track" id="carouselTrack"></div>
+        <button id="nextBtn" class="nav-btn next">›</button>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
