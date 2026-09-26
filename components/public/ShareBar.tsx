@@ -87,9 +87,9 @@ export function ShareBar() {
     fixed bottom-4 left-1/2 z-50
     flex -translate-x-1/2
     items-center
-    justify-center
+    justify-between
 
-    w-max
+    w-[240px]
     max-w-[calc(100vw-16px)]
 
     overflow-hidden
@@ -100,11 +100,15 @@ export function ShareBar() {
     shadow-2xl shadow-black/80
     backdrop-blur-xl
 
+    sm:w-[260px]
     sm:p-1.5
 
+    md:w-[300px]
     md:px-3
     md:py-2
 
+    lg:w-max
+    lg:justify-center
     lg:gap-1.5
     lg:px-4
     lg:py-2.5
