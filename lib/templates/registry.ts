@@ -228,6 +228,32 @@ export const templates: Template[] = [
     },
   ],
 },
+{
+  id: "carta",
+  slug: "carta",
+  name: "Carta en Sobre",
+  description: "Sobre interactivo con sello de cera que se rompe al tocarlo, carta que se despliega con mensaje escrito a máquina, título personalizado, fecha automática y galería de 3 fotos estilo polaroid",
+  category: "Romántica",
+  preview: "/templates/carta.png",
+  active: true,
+  schema: [
+    {
+      id: "titulo",
+      type: "text",
+      label: "Título de la carta",
+      placeholder: "Mi querida persona",
+    },
+    {
+      id: "subtitulo",
+      type: "textarea",
+      label: "Mensaje de la carta",
+      placeholder: "Escribe aquí tu carta especial...",
+    },
+    { id: "photo1", type: "image", label: "Foto 1 (Momento 1)" },
+    { id: "photo2", type: "image", label: "Foto 2 (Momento 2)" },
+    { id: "photo3", type: "image", label: "Foto 3 (Momento 3)" },
+  ],
+},
   {
     id: "love-galaxy",
     slug: "love-galaxy",

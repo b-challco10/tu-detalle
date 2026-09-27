@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Carta en un Sobre 3D 💌</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Partículas de corazones -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- Escena del sobre 3D -->
+  <div class="scene" id="scene">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+
+        <!-- Carta -->
+        <div class="letter" id="letter">
+          <div class="letter-content">
+
+            <header class="letter-header">
+              <h1 class="handwritten" id="letterTitle">Mi querida persona</h1>
+              <p class="date" id="letterDate">—</p>
+            </header>
+
+            <div class="letter-body">
+              <p class="typed-text" id="typedText"></p>
+            </div>
+
+            <!-- Galería Polaroid (3 fotos) -->
+            <div class="gallery" id="gallery">
+              <div class="polaroid" style="--rot: -6deg;">
+                <div class="polaroid-img" id="photo1">
+                  <span>💖</span>
+                </div>
+                <p>Momento 1</p>
+              </div>
+              <div class="polaroid" style="--rot: 4deg;">
+                <div class="polaroid-img" id="photo2">
+                  <span>🌸</span>
+                </div>
+                <p>Momento 2</p>
+              </div>
+              <div class="polaroid" style="--rot: -3deg;">
+                <div class="polaroid-img" id="photo3">
+                  <span>✨</span>
+                </div>
+                <p>Momento 3</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Frente del sobre -->
+        <div class="envelope-front"></div>
+
+        <!-- Solapa -->
+        <div class="envelope-flap" id="envelopeFlap"></div>
+
+        <!-- Sello de cera -->
+        <div class="wax-seal" id="waxSeal">
+          <div class="seal-inner">❤</div>
+        </div>
+      </div>
+
+      <p class="instruction" id="instruction">Toca el sello para abrir 💌</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
