@@ -229,6 +229,38 @@ export const templates: Template[] = [
   ],
 },
 {
+  id: "flores-azules",
+  slug: "flores-azules",
+  name: "Flores Azules",
+  description: "Ramo de 13 flores azules con envoltorio multicapa y lazo 3D que brotan al cargar, mensaje personalizado con efecto máquina de escribir, galería de 4 fotos y música de fondo",
+  category: "Romántica",
+  preview: "/templates/flores-azules.png",
+  active: true,
+  schema: [
+    {
+      id: "titulo",
+      type: "text",
+      label: "Título principal",
+      placeholder: "Un ramo azul para alegrar tu día",
+    },
+    {
+      id: "subtitulo",
+      type: "textarea",
+      label: "Mensaje o dedicatoria",
+      placeholder: "Escribe aquí tu mensaje especial...",
+    },
+    { id: "photo1", type: "image", label: "Foto 1" },
+    { id: "photo2", type: "image", label: "Foto 2" },
+    { id: "photo3", type: "image", label: "Foto 3" },
+    { id: "photo4", type: "image", label: "Foto 4" },
+    {
+      id: "bgMusic",
+      type: "audio",
+      label: "Música de fondo (opcional)",
+    },
+  ],
+},
+{
   id: "carta",
   slug: "carta",
   name: "Carta en Sobre",
