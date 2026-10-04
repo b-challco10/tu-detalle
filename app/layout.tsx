@@ -13,33 +13,33 @@ export const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tu-detalle.com"),
+  metadataBase: new URL("https://www.tu-detalle.com"),
 
   title: {
-    default: "Tu Detalle | Detalles y regalos personalizados",
+    default: "Tu Detalle | Cartas y Regalos Digitales Personalizados",
     template: "%s | Tu Detalle",
   },
 
   description:
-    "Crea detalles personalizados con fotos, música, mensajes y experiencias únicas para sorprender a quienes más quieres.",
+    "Crea detalles y cartas digitales personalizadas con fotos, música, mensajes e interacciones únicas para sorprender a tu pareja o amigos.",
 
   keywords: [
     "regalos personalizados",
     "detalles románticos",
     "cartas digitales",
-    "regalos online",
-    "sorpresas personalizadas",
+    "regalos virtuales de aniversario",
+    "cartas de amor interactivas",
+    "detalles con fotos y música",
     "tu detalle",
   ],
 
   authors: [{ name: "Tu Detalle" }],
-
   creator: "Tu Detalle",
   publisher: "Tu Detalle",
   applicationName: "Tu Detalle",
 
   alternates: {
-    canonical: "https://tu-detalle.com",
+    canonical: "https://www.tu-detalle.com",
   },
 
   robots: {
@@ -60,30 +60,30 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Tu Detalle | Regalos y Experiencias Digitales",
+    title: "Tu Detalle | Cartas y Regalos Digitales Personalizados",
     description:
-      "Crea experiencias únicas con fotos, mensajes y música personalizada.",
-    url: "https://tu-detalle.com",
+      "Crea detalles únicos con fotos, mensajes y música personalizada para ocasiones especiales.",
+    url: "https://www.tu-detalle.com",
     siteName: "Tu Detalle",
     locale: "es_ES",
     type: "website",
 
     images: [
       {
-        url: "/logo1.png",
+        url: "/og-banner.png",
         width: 1200,
         height: 630,
-        alt: "Tu Detalle - Regalos personalizados",
+        alt: "Plataforma de regalos y cartas digitales personalizadas - Tu Detalle",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Tu Detalle | Regalos Personalizados",
+    title: "Tu Detalle | Cartas y Regalos Digitales Personalizados",
     description:
-      "Crea experiencias únicas con fotos, mensajes y música personalizada.",
-    images: ["/logo1.png"],
+      "Crea detalles únicos con fotos, mensajes y música personalizada para ocasiones especiales.",
+    images: ["/og-banner.png"],
   },
 };
 
@@ -94,10 +94,13 @@ export default function RootLayout({
 }>) {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "WebApplication",
     name: "Tu Detalle",
-    url: "https://tu-detalle.com",
-    logo: "https://tu-detalle.com/logo1.png",
+    url: "https://www.tu-detalle.com",
+    applicationCategory: "EntertainmentApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript",
+    description: "Plataforma web para personalizar cartas y detalles digitales interactivos.",
   };
 
   return (
