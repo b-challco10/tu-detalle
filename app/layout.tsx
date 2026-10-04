@@ -103,11 +103,19 @@ export default function RootLayout({
     applicationCategory: "EntertainmentApplication",
     operatingSystem: "All",
     browserRequirements: "Requires JavaScript",
-    description: "Plataforma web para personalizar cartas y detalles digitales interactivos.",
+    description:
+      "Plataforma web para personalizar cartas y detalles digitales interactivos.",
   };
 
   return (
     <html lang="es">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3770775034295435"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={geist.className}>
         <script
           type="application/ld+json"
