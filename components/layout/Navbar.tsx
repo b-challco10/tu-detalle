@@ -32,6 +32,7 @@ export function Navbar() {
     { href: "/", label: "Inicio" },
     { href: "/plantillas", label: "Plantillas" },
     { href: "/#como-funciona", label: "Cómo funciona" },
+    { href: "/blog", label: "Blog" },
     { href: "/faq", label: "FAQ" },
     { href: "/sobre", label: "Sobre" },
   ];

@@ -43,10 +43,10 @@ export function Footer() {
             >
               Cómo funciona
             </Link>
-            <Link
-              href="/faq"
-              className="transition hover:text-cyan-300"
-            >
+            <Link href="/blog" className="transition hover:text-cyan-300">
+              Blog
+            </Link>
+            <Link href="/faq" className="transition hover:text-cyan-300">
               Preguntas frecuentes
             </Link>
             <Link href="/sobre" className="transition hover:text-cyan-300">
@@ -60,10 +60,24 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-white/5 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} TuDetalle. Todos los derechos
-            reservados.
-          </p>
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-6">
+            <p>
+              © {new Date().getFullYear()} TuDetalle. Todos los derechos
+              reservados.
+            </p>
+
+            <div className="flex gap-4">
+              <Link
+                href="/privacidad"
+                className="transition hover:text-cyan-300"
+              >
+                Privacidad
+              </Link>
+              <Link href="/terminos" className="transition hover:text-cyan-300">
+                Términos
+              </Link>
+            </div>
+          </div>
 
           <div className="flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-cyan-400" />
