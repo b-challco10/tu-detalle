@@ -85,6 +85,9 @@ export const metadata: Metadata = {
       "Crea detalles únicos con fotos, mensajes y música personalizada para ocasiones especiales.",
     images: ["/og-banner.png"],
   },
+  other: {
+    "google-adsense-account": "ca-pub-3770775034295435",
+  },
 };
 
 export default function RootLayout({
