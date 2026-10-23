@@ -2,145 +2,228 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Heart, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  ArrowRight,
+  BookOpen,
+  CircleHelp,
+  Heart,
+  Home,
+  Info,
+  LayoutTemplate,
+  MoreHorizontal,
+  Sparkles,
+  X,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+
+const navLinks = [
+  { href: "/", label: "Inicio", icon: Home, mobilePrimary: true },
+  {
+    href: "/plantillas",
+    label: "Plantillas",
+    icon: LayoutTemplate,
+    mobilePrimary: true,
+  },
+  { href: "/blog", label: "Blog", icon: BookOpen, mobilePrimary: true },
+  {
+    href: "/#como-funciona",
+    label: "Cómo funciona",
+    icon: Sparkles,
+    mobilePrimary: false,
+  },
+  { href: "/faq", label: "FAQ", icon: CircleHelp, mobilePrimary: false },
+  { href: "/sobre", label: "Sobre", icon: Info, mobilePrimary: false },
+];
 
 export function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  useEffect(() => {
-    function handleScroll() {
-      setScrolled(window.scrollY > 20);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Función para determinar si el link está activo
-  const isActive = (path: string) => {
-    if (path === "/") {
-      return pathname === "/";
-    }
-    return pathname.startsWith(path);
+  const isActive = (href: string) => {
+    if (href.includes("#")) return false;
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
   };
 
-  const navLinks = [
-    { href: "/", label: "Inicio" },
-    { href: "/plantillas", label: "Plantillas" },
-    { href: "/#como-funciona", label: "Cómo funciona" },
-    { href: "/blog", label: "Blog" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/sobre", label: "Sobre" },
-  ];
+  const primaryLinks = navLinks.filter((l) => l.mobilePrimary);
+  const overflowLinks = navLinks.filter((l) => !l.mobilePrimary);
+  const overflowActive = overflowLinks.some((l) => isActive(l.href));
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMoreOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!moreOpen) return;
+    const onClick = (e: MouseEvent | TouchEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("touchstart", onClick);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("touchstart", onClick);
+    };
+  }, [moreOpen]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "backdrop-blur-xl bg-slate-950/70 border-b border-white/5"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* LOGO */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 via-cyan-400 to-emerald-400 shadow-[0_0_25px_rgba(34,211,238,0.3)]">
-            <Heart className="h-5 w-5 text-white" fill="currentColor" />
-          </div>
-
-          <span className="text-xl font-bold text-white">
-            Tu
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-              Detalle
-            </span>
-          </span>
-        </Link>
-
-        {/* DESKTOP MENU */}
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`relative py-2 text-sm font-medium transition-colors duration-300 ${
-                  active ? "text-white" : "text-slate-300 hover:text-cyan-300"
-                }`}
-              >
-                {link.label}
-                {/* Línea animada con degradado para la ruta activa */}
-                <span
-                  className={`absolute bottom-0 left-0 h-[2px] w-full rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 transition-all duration-300 ${
-                    active
-                      ? "opacity-100 scale-x-100 shadow-[0_0_12px_rgba(34,211,238,0.8)]"
-                      : "opacity-0 scale-x-0"
-                  }`}
-                />
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* CTA */}
-        <div className="hidden md:block">
-          <Link
-            href="/plantillas"
-            className="rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition duration-300 hover:scale-105"
-          >
-            Crear ahora ✨
-          </Link>
-        </div>
-
-        {/* MOBILE BUTTON */}
-        <button
-          type="button"
-          onClick={() => setOpen(!open)}
-          className="p-2 text-white transition-opacity hover:opacity-70 md:hidden"
+    <>
+      {/* ================= DESKTOP ================= */}
+      <header className="pointer-events-none fixed inset-x-0 top-4 z-50 hidden justify-center px-6 md:flex">
+        <nav
+          className={`pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full border border-white/10 py-2 pl-4 pr-2 backdrop-blur-xl transition-all duration-300 ${
+            scrolled
+              ? "bg-[#080810]/70 shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
+              : "bg-[#080810]/30 shadow-none"
+          }`}
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </div>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 via-cyan-400 to-emerald-400 shadow-[0_0_20px_rgba(34,211,238,0.35)]">
+              <Heart className="h-4 w-4 text-white" fill="currentColor" />
+            </div>
+            <span className="text-lg font-bold text-white">
+              Tu
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+                Detalle
+              </span>
+            </span>
+          </Link>
 
-      {/* MOBILE MENU */}
-      {open && (
-        <div className="border-t border-white/5 bg-[#080810] backdrop-blur-xl md:hidden">
-          <div className="flex flex-col gap-2 px-4 py-5">
+          {/* Links */}
+          <ul className="flex items-center gap-1">
             {navLinks.map((link) => {
               const active = isActive(link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`block rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                      active
+                        ? "bg-cyan-400/10 text-cyan-300"
+                        : "text-slate-300 hover:bg-white/5 hover:text-cyan-300"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* CTA */}
+          <Link
+            href="/plantillas"
+            className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition hover:scale-[1.03]"
+          >
+            Crear ahora
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </nav>
+      </header>
+
+      {/* ================= MÓVIL ================= */}
+      <header className="pointer-events-none fixed inset-x-0 bottom-3 z-50 flex justify-center px-3 pb-[env(safe-area-inset-bottom)] md:hidden">
+        <div ref={moreRef} className="pointer-events-auto relative max-w-full">
+          <nav
+            className={`flex items-center gap-1 rounded-full border border-white/10 p-1.5 backdrop-blur-xl transition-all duration-300 ${
+              scrolled
+                ? "bg-[#080810]/70 shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
+                : "bg-[#080810]/30 shadow-none"
+            }`}
+          >
+            {primaryLinks.map((link) => {
+              const active = isActive(link.href);
+              const Icon = link.icon;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={`relative overflow-hidden rounded-xl px-4 py-3 text-slate-300 transition-all ${
+                  className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-[13px] font-medium transition-colors ${
                     active
-                      ? "bg-white/5 text-white font-semibold"
-                      : "hover:bg-white/5"
+                      ? "bg-cyan-400/10 text-cyan-300"
+                      : "text-slate-300 active:bg-white/5"
                   }`}
                 >
+                  <Icon className="h-4 w-4 shrink-0" />
                   {link.label}
-                  {/* Borde lateral izquierdo con degradado para mobile */}
-                  {active && (
-                    <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-400 via-cyan-400 to-emerald-400" />
-                  )}
                 </Link>
               );
             })}
+
+            {/* Botón de tres puntos */}
+            <button
+              type="button"
+              onClick={() => setMoreOpen((v) => !v)}
+              aria-label="Más opciones"
+              aria-expanded={moreOpen}
+              className={`relative ml-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-l border-white/10 transition-colors ${
+                moreOpen || overflowActive
+                  ? "bg-cyan-400/10 text-cyan-300"
+                  : "text-slate-300"
+              }`}
+            >
+              {moreOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <MoreHorizontal className="h-5 w-5" />
+              )}
+              {overflowActive && !moreOpen && (
+                <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
+              )}
+            </button>
+          </nav>
+
+          {/* Menú desplegable */}
+          <div
+            className={`absolute bottom-full right-0 mb-2 w-60 origin-bottom-right rounded-3xl border border-white/10 bg-[#080810]/95 p-2 shadow-[0_-20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-200 ${
+              moreOpen
+                ? "scale-100 opacity-100"
+                : "pointer-events-none scale-95 opacity-0"
+            }`}
+          >
+            {overflowLinks.map((link) => {
+              const active = isActive(link.href);
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMoreOpen(false)}
+                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors ${
+                    active
+                      ? "bg-cyan-400/10 text-cyan-300"
+                      : "text-slate-300 active:bg-white/5"
+                  }`}
+                >
+                  <Icon className="h-4 w-4 text-cyan-300" />
+                  {link.label}
+                </Link>
+              );
+            })}
+
             <Link
               href="/plantillas"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-4 py-3 text-center font-semibold text-white shadow-lg shadow-cyan-500/20"
+              onClick={() => setMoreOpen(false)}
+              className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20"
             >
-              Crear detalle ✨
+              Crear ahora
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
-      )}
-    </header>
+      </header>
+    </>
   );
 }

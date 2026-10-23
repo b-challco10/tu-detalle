@@ -107,7 +107,7 @@ export default function FAQPage() {
       <Navbar />
 
       <main className="min-h-screen bg-[#080810]">
-        <div className="mx-auto max-w-4xl px-4 pt-32 pb-20">
+        <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 md:pt-32">
           <div className="text-center">
             <h1 className="text-5xl font-bold text-white">
               Preguntas frecuentes

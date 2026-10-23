@@ -18,7 +18,7 @@ export default function Home() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative flex min-h-screen items-center px-4 pb-20 pt-32 sm:px-6 lg:px-8">
+      <section className="relative flex min-h-screen items-center px-4 pb-20 pt-16 md:pt-32 sm:px-6 lg:px-8">
         
         {/* Background glow */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">

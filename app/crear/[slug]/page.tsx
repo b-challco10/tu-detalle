@@ -29,8 +29,8 @@ export default async function CrearTemplatePage({
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-slate-950">
-        <div className="mx-auto max-w-7xl px-4 pt-32 pb-12">
+      <main className="min-h-screen bg-[#080810]">
+        <div className="mx-auto max-w-7xl px-4 pt-10 pb-12 md:pt-32">
           <div className="mb-10">
             <p className="text-sm font-medium text-cyan-400">
               {template.category}

@@ -5,7 +5,7 @@ import { Heart, Sparkles } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/5">
+    <footer className="border-t border-cyan-400/15 bg-[#010411] pb-28 md:pb-0">
       {/* Glow */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
 

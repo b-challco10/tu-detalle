@@ -62,8 +62,8 @@ export default async function PostPage({ params }: Props) {
 
       <Navbar />
 
-      <main className="min-h-screen bg-slate-950">
-        <article className="mx-auto max-w-3xl px-4 pt-32 pb-20">
+      <main className="min-h-screen bg-[#080810]">
+        <article className="mx-auto max-w-3xl px-4 pt-16 pb-20">
           <p className="text-sm text-slate-500">
             <Link href="/blog" className="hover:text-cyan-300">
               Blog
