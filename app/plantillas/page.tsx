@@ -10,7 +10,7 @@ export default function PlantillasPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-slate-950">
+      <main className="min-h-screen bg-[#080810]">
         <div className="mx-auto max-w-7xl px-4 pt-32 pb-20">
           <div className="mb-12">
             <h1 className="text-5xl font-bold text-white">

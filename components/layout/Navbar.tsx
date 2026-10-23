@@ -108,7 +108,7 @@ export function Navbar() {
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="border-t border-white/5 bg-slate-950/95 backdrop-blur-xl md:hidden">
+        <div className="border-t border-white/5 bg-[#080810] backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-2 px-4 py-5">
             {navLinks.map((link) => {
               const active = isActive(link.href);

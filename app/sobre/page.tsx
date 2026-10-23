@@ -62,7 +62,7 @@ export default function SobrePage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-slate-950">
+      <main className="min-h-screen bg-[#080810]">
         <div className="mx-auto max-w-7xl px-4 pt-32 pb-20">
           {/* Intro */}
           <div className="text-center">

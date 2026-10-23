@@ -14,7 +14,7 @@ import { TemplateGrid } from "@/components/templates/TemplateGrid";
 import { templates } from "@/lib/templates/registry";
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-slate-950 text-white">
+    <main className="min-h-screen overflow-hidden bg-[#080810] text-white">
       <Navbar />
 
       {/* HERO */}
