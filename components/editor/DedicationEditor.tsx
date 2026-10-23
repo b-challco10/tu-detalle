@@ -109,8 +109,10 @@ export function DedicationEditor({ templates }: DedicationEditorProps) {
         throw new Error("La API creó la respuesta pero no devolvió la URL.");
       }
 
-      // Ir a la página de éxito (una sola navegación)
-      router.push(`/creada?url=${encodeURIComponent(result.url)}`);
+      // Ir a la página pública de la dedicatoria
+      // (cuando exista la página /creada, cambia esto por:
+      // router.push(`/creada?url=${encodeURIComponent(result.url)}`);)
+      router.push(result.url);
     } catch (err) {
       console.error(err);
 
