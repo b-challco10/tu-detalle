@@ -1,12 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Heart, Loader2 } from "lucide-react";
 
 import type {
   DedicationContent,
   Template,
 } from "@/lib/templates/types";
+import { TemplateFrame } from "@/components/templates/TemplateFrame";
 import { FieldRenderer } from "./FieldRenderer";
 import { TemplateSelector } from "./TemplateSelector";
 
@@ -138,6 +140,8 @@ export function DedicationEditor({ templates }: DedicationEditorProps) {
 
   return (
     <div className="space-y-10">
+      {isCreating && <CreatingOverlay />}
+
       {/* Paso 1: Plantillas */}
       {templates.length > 1 && (
         <section>
@@ -185,7 +189,7 @@ export function DedicationEditor({ templates }: DedicationEditorProps) {
               </div>
             </div>
 
-            <div className="space-y-6 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-6 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+            <div className="glass-card space-y-6 p-6">
               {/* Barra de progreso */}
               {requiredFields.length > 0 && (
                 <div>
@@ -223,14 +227,22 @@ export function DedicationEditor({ templates }: DedicationEditorProps) {
                 </div>
               )}
 
-              <div className="sticky bottom-20 z-10 md:static">
+              <div className="sticky bottom-28 z-10 md:static">
                 <button
                   type="button"
                   onClick={handleCreate}
                   disabled={isCreating}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-5 py-4 font-semibold text-white shadow-lg shadow-cyan-500/25 transition hover:scale-[1.01] hover:shadow-cyan-500/40 disabled:cursor-not-allowed disabled:opacity-60"
+                  aria-busy={isCreating}
+                  className="btn-gradient-animated flex w-full items-center justify-center gap-2 rounded-xl px-5 py-4 font-semibold text-white shadow-lg shadow-cyan-500/25 transition hover:scale-[1.01] hover:shadow-cyan-500/40 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {isCreating ? "Creando tu detalle..." : "Crear mi detalle ✨"}
+                  {isCreating ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      Creando tu detalle...
+                    </>
+                  ) : (
+                    "Crear mi detalle ✨"
+                  )}
                 </button>
               </div>
             </div>
@@ -261,15 +273,23 @@ interface TemplatePreviewProps {
 }
 
 function TemplatePreview({ templateSlug, content }: TemplatePreviewProps) {
-  const encodedData = encodeContent(content);
+  // Esperamos 600 ms sin escribir antes de recargar el preview,
+  // así el iframe no se recarga con cada tecla.
+  const [debouncedContent, setDebouncedContent] = useState(content);
+
+  useEffect(() => {
+    const id = setTimeout(() => setDebouncedContent(content), 600);
+    return () => clearTimeout(id);
+  }, [content]);
+
+  const encodedData = encodeContent(debouncedContent);
 
   return (
-    <iframe
-      title="Vista previa"
+    <TemplateFrame
       src={`/template/${templateSlug}?data=${encodeURIComponent(encodedData)}`}
-      className="h-[720px] w-full border-0"
-      sandbox="allow-scripts"
-      allow="autoplay"
+      title="Vista previa"
+      heightClassName="h-[720px]"
+      label="Cargando vista previa..."
     />
   );
 }
@@ -288,4 +308,53 @@ function encodeContent(content: DedicationContent) {
     .replace(/\+/g, "-")
     .replace(/\//g, "_")
     .replace(/=+$/, "");
+}
+
+const CREATING_MESSAGES = [
+  "Guardando tu mensaje...",
+  "Preparando tus fotos y tu música...",
+  "Generando tu enlace único...",
+  "Ya casi está listo ✨",
+];
+
+function CreatingOverlay() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => Math.min(i + 1, CREATING_MESSAGES.length - 1));
+    }, 1800);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-[#080810]/80 px-4 backdrop-blur-md"
+    >
+      <div className="glass-card flex w-full max-w-xs flex-col items-center px-8 py-10 text-center">
+        <div className="relative flex h-24 w-24 items-center justify-center">
+          <div className="absolute inset-0 animate-spin rounded-full bg-[conic-gradient(from_0deg,transparent_0%,#2563eb_30%,#22d3ee_65%,#34d399_100%)] motion-reduce:animate-none" />
+          <div className="absolute inset-[3px] rounded-full bg-[#0b0b16]" />
+
+          <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 via-cyan-400 to-emerald-400 shadow-[0_0_40px_rgba(34,211,238,0.5)]">
+            <Heart className="h-7 w-7 text-white" fill="currentColor" />
+          </div>
+        </div>
+
+        <h3 className="mt-6 text-xl font-bold text-white">
+          Creando tu detalle
+        </h3>
+
+        <p className="mt-2 min-h-[20px] text-sm text-slate-300">
+          {CREATING_MESSAGES[index]}
+        </p>
+
+        <p className="mt-5 text-xs text-slate-400">
+          No cierres esta página
+        </p>
+      </div>
+    </div>
+  );
 }

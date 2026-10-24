@@ -1,4 +1,5 @@
 import type { DedicationContent } from "@/lib/templates/types";
+import { TemplateFrame } from "@/components/templates/TemplateFrame";
 
 interface TemplateRendererProps {
   templateSlug: string;
@@ -6,12 +7,11 @@ interface TemplateRendererProps {
 }
 
 function encodeContent(content: DedicationContent) {
-  return Buffer.from(
-    JSON.stringify(content),
-    "utf8"
-  ).toString("base64url");
+  return Buffer.from(JSON.stringify(content), "utf8").toString("base64url");
 }
 
+// Sigue siendo un componente de servidor: codifica los datos aquí
+// y deja la lógica de carga al componente cliente TemplateFrame.
 export function TemplateRenderer({
   templateSlug,
   content,
@@ -21,11 +21,11 @@ export function TemplateRenderer({
   const src = `/template/${templateSlug}?data=${encodeURIComponent(data)}`;
 
   return (
-    <iframe
-      title="TuDetalle"
+    <TemplateFrame
       src={src}
-      className="h-screen w-full border-0"
-      sandbox="allow-scripts"
+      title="TuDetalle"
+      heightClassName="h-screen"
+      label="Preparando tu sorpresa ✨"
     />
   );
 }
