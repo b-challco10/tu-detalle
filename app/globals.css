@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #080810;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -12,15 +12,75 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---------- Animaciones ---------- */
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ---------- 01 Glassmorphism ---------- */
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- 02 Gradiente animado (botones principales) ---------- */
+
+@utility btn-gradient-animated {
+  background-image: linear-gradient(
+    90deg,
+    #2563eb,
+    #22d3ee,
+    #34d399,
+    #22d3ee,
+    #2563eb
+  );
+  background-size: 200% 100%;
+  animation: moveGradient 3s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* ---------- 03 Hover 3D (solo dispositivos con mouse) ---------- */
+
+@utility card-3d {
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: perspective(1000px) rotateX(5deg) rotateY(-5deg)
+        translateY(-10px);
+      box-shadow: 0 20px 40px rgba(34, 211, 238, 0.25);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
+  }
 }

@@ -125,7 +125,7 @@ export function Navbar() {
           {/* CTA */}
           <Link
             href="/plantillas"
-            className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition hover:scale-[1.03]"
+            className="btn-gradient-animated group flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition hover:scale-[1.03]"
           >
             Crear ahora
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -135,12 +135,15 @@ export function Navbar() {
 
       {/* ================= MÓVIL ================= */}
       <header className="pointer-events-none fixed inset-x-0 bottom-3 z-50 flex justify-center px-3 pb-[env(safe-area-inset-bottom)] md:hidden">
-        <div ref={moreRef} className="pointer-events-auto relative max-w-full">
+        <div
+          ref={moreRef}
+          className="pointer-events-auto relative w-full max-w-md"
+        >
           <nav
-            className={`flex items-center gap-1 rounded-full border border-white/10 p-1.5 backdrop-blur-xl transition-all duration-300 ${
+            className={`flex items-stretch gap-1 rounded-[28px] border border-white/15 p-2 backdrop-blur-xl transition-all duration-300 ${
               scrolled
-                ? "bg-[#080810]/70 shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
-                : "bg-[#080810]/30 shadow-none"
+                ? "bg-[#080810]/80 shadow-[0_8px_40px_rgba(0,0,0,0.5)]"
+                : "bg-[#080810]/55 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
             }`}
           >
             {primaryLinks.map((link) => {
@@ -150,13 +153,13 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-[13px] font-medium transition-colors ${
+                  className={`flex min-h-[56px] flex-1 flex-col items-center justify-center gap-1 rounded-2xl px-1 text-xs font-medium transition-colors ${
                     active
-                      ? "bg-cyan-400/10 text-cyan-300"
-                      : "text-slate-300 active:bg-white/5"
+                      ? "bg-cyan-400/15 text-cyan-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+                      : "text-slate-300 active:bg-white/10"
                   }`}
                 >
-                  <Icon className="h-4 w-4 shrink-0" />
+                  <Icon className="h-6 w-6 shrink-0" />
                   {link.label}
                 </Link>
               );
@@ -168,26 +171,27 @@ export function Navbar() {
               onClick={() => setMoreOpen((v) => !v)}
               aria-label="Más opciones"
               aria-expanded={moreOpen}
-              className={`relative ml-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-l border-white/10 transition-colors ${
+              className={`relative flex min-h-[56px] w-16 shrink-0 flex-col items-center justify-center gap-1 rounded-2xl text-xs font-medium transition-colors ${
                 moreOpen || overflowActive
-                  ? "bg-cyan-400/10 text-cyan-300"
-                  : "text-slate-300"
+                  ? "bg-cyan-400/15 text-cyan-300"
+                  : "text-slate-300 active:bg-white/10"
               }`}
             >
               {moreOpen ? (
-                <X className="h-4 w-4" />
+                <X className="h-6 w-6" />
               ) : (
-                <MoreHorizontal className="h-5 w-5" />
+                <MoreHorizontal className="h-6 w-6" />
               )}
+              Más
               {overflowActive && !moreOpen && (
-                <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
+                <span className="absolute right-3 top-2 h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
               )}
             </button>
           </nav>
 
           {/* Menú desplegable */}
           <div
-            className={`absolute bottom-full right-0 mb-2 w-60 origin-bottom-right rounded-3xl border border-white/10 bg-[#080810]/95 p-2 shadow-[0_-20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-200 ${
+            className={`absolute bottom-full right-0 mb-3 w-72 origin-bottom-right rounded-3xl border border-white/15 bg-[#080810]/95 p-2 shadow-[0_-20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl transition-all duration-200 ${
               moreOpen
                 ? "scale-100 opacity-100"
                 : "pointer-events-none scale-95 opacity-0"
@@ -201,13 +205,13 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMoreOpen(false)}
-                  className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-colors ${
+                  className={`flex items-center gap-3 rounded-2xl px-4 py-3.5 text-base font-medium transition-colors ${
                     active
                       ? "bg-cyan-400/10 text-cyan-300"
-                      : "text-slate-300 active:bg-white/5"
+                      : "text-slate-200 active:bg-white/10"
                   }`}
                 >
-                  <Icon className="h-4 w-4 text-cyan-300" />
+                  <Icon className="h-5 w-5 text-cyan-300" />
                   {link.label}
                 </Link>
               );
@@ -216,10 +220,10 @@ export function Navbar() {
             <Link
               href="/plantillas"
               onClick={() => setMoreOpen(false)}
-              className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-400 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20"
+              className="btn-gradient-animated mt-1 flex items-center justify-center gap-2 rounded-2xl px-4 py-3.5 text-base font-semibold text-white shadow-lg shadow-cyan-500/20"
             >
               Crear ahora
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
