@@ -1,11 +1,8 @@
 import { notFound } from "next/navigation";
-
+import { getTemplateBySlug } from "@/lib/templates/all";
 import { DedicationEditor } from "@/components/editor/DedicationEditor";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-
-import { templates } from "@/lib/templates/registry";
-
 interface PageProps {
   params: Promise<{
     slug: string;
@@ -17,9 +14,7 @@ export default async function CrearTemplatePage({
 }: PageProps) {
   const { slug } = await params;
 
-  const template = templates.find(
-    (item) => item.slug === slug
-  );
+const template = await getTemplateBySlug(slug);
 
   if (!template) {
     notFound();

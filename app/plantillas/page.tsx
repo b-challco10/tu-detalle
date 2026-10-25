@@ -1,11 +1,12 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-
-import { templates } from "@/lib/templates/registry";
+import { getAllTemplates } from "@/lib/templates/all"; 
 
 import { TemplateGrid } from "@/components/templates/TemplateGrid";
 
-export default function PlantillasPage() {
+export const revalidate = 60;
+export default async function PlantillasPage() {
+  const templates = await getAllTemplates();
   return (
     <>
       <Navbar />

@@ -1,0 +1,16 @@
+export const CATEGORIES = [
+  "Romántica",
+  "Navideña",
+  "Aniversario",
+  "San Valentín",
+  "Cumpleaños",
+  "Día de la Madre",
+  "Día del Padre",
+  "Año Nuevo",
+  "Pedir perdón",
+  "Declarar sentimientos",
+  "Amistad",
+  "Despedidas",
+  "Parejas a distancia",
+  "Halloween",
+] as const;

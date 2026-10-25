@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { nanoid } from "nanoid";
-
 import { createClient } from "@/lib/supabase/server";
-import { templates } from "@/lib/templates/registry";
-
+import { getTemplateBySlug } from "@/lib/templates/all";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -18,11 +16,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const template = templates.find(
-      (item) =>
-        item.slug === templateId ||
-        item.id === templateId
-    );
+const template = await getTemplateBySlug(templateId);
 
     if (!template) {
       return NextResponse.json(

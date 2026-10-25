@@ -13,9 +13,11 @@ import {
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { TemplateGrid } from "@/components/templates/TemplateGrid";
-import { templates } from "@/lib/templates/registry";
+import { getAllTemplates } from "@/lib/templates/all"; 
 
-export default function Home() {
+export const revalidate = 60;
+export default async function Home() {                    // ahora async
+  const templates = await getAllTemplates();
   return (
     <>
       <Navbar />

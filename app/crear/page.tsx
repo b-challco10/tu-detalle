@@ -2,8 +2,14 @@ import { DedicationEditor } from "@/components/editor/DedicationEditor";
 import { templates } from "@/lib/templates/registry";
 import {Navbar} from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-export default function CrearPage() {
+import { getAllTemplates } from "@/lib/templates/all";
+export const revalidate = 60;
+
+export default async function CrearPage() {
+  const templates = await getAllTemplates();
+  
   return (
+    
     <>
       <Navbar />
 
