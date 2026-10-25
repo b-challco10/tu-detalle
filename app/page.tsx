@@ -7,6 +7,8 @@ import {
   Music,
   Sparkles,
   WandSparkles,
+  HelpCircle,
+  ShieldCheck,
 } from "lucide-react";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
@@ -50,9 +52,7 @@ export default function Home() {
               </h1>
 
               <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg lg:mx-0">
-                Crea una dedicatoria personalizada con fotos, música, mensajes
-                y animaciones. Comparte un enlace y sorprende a esa persona
-                especial.
+                Plataforma interactiva en línea para crear dedicatorias personalizadas con fotografías, música de fondo, mensajes emotivos y animaciones. Comparte un enlace único y sorprende a esa persona especial en su día.
               </p>
 
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
@@ -73,7 +73,7 @@ export default function Home() {
               </div>
 
               <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-slate-200 lg:justify-start">
-                {["Sin complicaciones", "Comparte por enlace"].map((text) => (
+                {["Sin complicaciones", "Comparte por enlace", "100% Personalizable"].map((text) => (
                   <span
                     key={text}
                     className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3.5 py-1.5 backdrop-blur-md"
@@ -125,8 +125,7 @@ export default function Home() {
                       </div>
 
                       <p className="mx-auto mt-7 max-w-xs text-sm leading-7 text-slate-300">
-                        Hay personas que llegan a nuestra vida y hacen que todo
-                        sea un poquito más bonito.
+                        Hay personas que llegan a nuestra vida y hacen que todo sea un poquito más bonito.
                       </p>
 
                       <div className="mt-6 text-sm text-slate-400">
@@ -168,8 +167,7 @@ export default function Home() {
             </h2>
 
             <p className="mt-4 max-w-xl text-slate-300">
-              Cada plantilla incluye animaciones, música, imágenes y efectos
-              visuales.
+              Cada plantilla incluye animaciones interactivas, música personalizada, marcos de fotografías y efectos visuales diseñados para emocionar.
             </p>
           </div>
 
@@ -181,7 +179,6 @@ export default function Home() {
           id="como-funciona"
           className="relative scroll-mt-24 border-t border-white/5 px-4 py-24 sm:px-6 lg:px-8"
         >
-          {/* glow detrás del vidrio */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
             <div className="absolute left-1/4 top-1/3 h-[320px] w-[320px] rounded-full bg-blue-600/20 blur-[120px]" />
             <div className="absolute right-1/4 bottom-0 h-[320px] w-[320px] rounded-full bg-emerald-400/15 blur-[120px]" />
@@ -198,7 +195,7 @@ export default function Home() {
               </h2>
 
               <p className="mt-4 text-slate-300">
-                Nosotros ponemos la tecnología. Tú pones el sentimiento.
+                Nosotros ponemos la tecnología digital y los componentes interactivos. Tú pones los recuerdos, las fotografías y el sentimiento.
               </p>
             </div>
 
@@ -207,22 +204,61 @@ export default function Home() {
                 number="01"
                 icon={<WandSparkles className="h-6 w-6" />}
                 title="Elige una plantilla"
-                description="Selecciona uno de nuestros diseños animados para comenzar."
+                description="Selecciona uno de nuestros diseños animados pensados para aniversarios, cumpleaños, declaraciones de amor o agradecimientos especiales."
               />
 
               <Step
                 number="02"
                 icon={<Heart className="h-6 w-6" />}
-                title="Personalízala"
-                description="Añade tu mensaje, fotos, colores y la canción que quieras."
+                title="Personalízala a tu gusto"
+                description="Añade tus propias palabras, carga tus fotografías favoritas, selecciona colores y elige una canción que signifique mucho para ambos."
               />
 
               <Step
                 number="03"
                 icon={<ArrowRight className="h-6 w-6" />}
-                title="Comparte"
-                description="Genera un enlace único y envíaselo a esa persona especial."
+                title="Comparte el enlace único"
+                description="Genera un enlace web personalizado al instante y envíaselo por WhatsApp, redes sociales o correo electrónico a esa persona especial."
               />
+            </div>
+          </div>
+        </section>
+
+        {/* ================= SECCIÓN DE CONTENIDO INFORMATIVO (NUEVO PARA ADSENSE) ================= */}
+        <section className="relative border-t border-white/5 px-4 py-24 sm:px-6 lg:px-8 bg-black/20">
+          <div className="relative mx-auto max-w-5xl">
+            <div className="text-center mb-16">
+              <p className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
+                Guía y Propósito
+              </p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+                ¿Por qué regalar una dedicatoria digital en Tu Detalle?
+              </h2>
+              <p className="mt-4 text-slate-300 max-w-2xl mx-auto">
+                En la era digital, los detalles que trascienden son aquellos que combinan la tecnología con la emoción sincera. Nuestra misión es ayudarte a estrechar distancias y conmover corazones.
+              </p>
+            </div>
+
+            <div className="grid gap-10 md:grid-cols-2 text-slate-300 text-sm leading-relaxed">
+              <div className="glass-card p-8 rounded-2xl border border-white/10">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <Sparkles className="h-5 w-5 text-cyan-400" />
+                  Innovación en cada mensaje
+                </h3>
+                <p>
+                  A diferencia de una tarjeta de papel tradicional o un mensaje de texto común, <strong>Tu Detalle</strong> transforma tus sentimientos en una experiencia web inmersiva. Al integrar animaciones fluidas, música de fondo y galerías fotográficas en una sola vista optimizada para celulares y computadoras, garantizamos que el impacto emocional sea inolvidable y perdure en el tiempo mediante un enlace web privado.
+                </p>
+              </div>
+
+              <div className="glass-card p-8 rounded-2xl border border-white/10">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                  <ShieldCheck className="h-5 w-5 text-emerald-400" />
+                  Privacidad y facilidad de uso
+                </h3>
+                <p>
+                  Diseñamos nuestra plataforma priorizando la simplicidad técnica. No necesitas conocimientos de programación ni diseño gráfico avanzado. En menos de cinco minutos, cualquier usuario puede configurar su plantilla, verificar una vista previa en tiempo real y obtener una URL lista para compartir con total seguridad y confianza.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -238,20 +274,66 @@ export default function Home() {
               <Feature
                 icon={<Heart />}
                 title="Hecho con sentimiento"
-                description="Cada detalle está pensado para que puedas expresar lo que sientes."
+                description="Cada detalle está estructurado para que puedas expresar con total libertad lo que llevas en el corazón."
               />
 
               <Feature
                 icon={<ImageIcon />}
                 title="Tus mejores recuerdos"
-                description="Sube tus fotografías y conviértelas en parte de una experiencia especial."
+                description="Sube tus fotografías entrañables y conviértelas en el eje central de una experiencia digital interactiva."
               />
 
               <Feature
                 icon={<Music />}
                 title="La canción perfecta"
-                description="Añade una canción para crear una experiencia todavía más personal."
+                description="Acompaña las palabras y las imágenes con una pista musical para evocar recuerdos y emociones únicas."
               />
+            </div>
+          </div>
+        </section>
+
+        {/* ================= PREGUNTAS FRECUENTES (FAQ - VITAL PARA ADSENSE) ================= */}
+        <section className="relative border-t border-white/5 px-4 py-24 sm:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-4xl">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 mb-4">
+                <HelpCircle className="h-4 w-4" />
+                Resolvemos tus dudas
+              </div>
+              <h2 className="text-3xl font-bold sm:text-4xl">Preguntas Frecuentes</h2>
+              <p className="mt-3 text-slate-300">
+                Todo lo que necesitas saber sobre la creación y compartición de tus dedicatorias en línea.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="glass-card p-6 rounded-2xl border border-white/10">
+                <h3 className="font-semibold text-white text-base">¿Cómo se comparte la dedicatoria con esa persona especial?</h3>
+                <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                  Una vez que personalices y guardes tu dedicatoria, el sistema te proporcionará un enlace web único (URL). Puedes copiarlo y enviárselo por WhatsApp, Messenger, correo electrónico o cualquier red social de tu preferencia.
+                </p>
+              </div>
+
+              <div className="glass-card p-6 rounded-2xl border border-white/10">
+                <h3 className="font-semibold text-white text-base">¿Las plantillas incluyen música y animaciones interactivas?</h3>
+                <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                  Sí, todas nuestras plantillas base vienen integradas con efectos de animación fluidos, marcos estéticos y la opción de configurar elementos multimedia para que la experiencia del usuario sea completamente envolvente.
+                </p>
+              </div>
+
+              <div className="glass-card p-6 rounded-2xl border border-white/10">
+                <h3 className="font-semibold text-white text-base">¿Puedo utilizar mis propias fotografías y textos personalizados?</h3>
+                <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                  ¡Por supuesto! La plataforma está diseñada para que puedas redactar tus propios mensajes personalizados, cambiar títulos y subir las imágenes que prefieras desde tu computadora o teléfono móvil.
+                </p>
+              </div>
+
+              <div className="glass-card p-6 rounded-2xl border border-white/10">
+                <h3 className="font-semibold text-white text-base">¿Cuánto tiempo permanece activo el enlace de la dedicatoria?</h3>
+                <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                  Los enlaces generados se mantienen activos en nuestros servidores de manera continua para que esa persona especial pueda ingresar a revivir el momento cuantas veces lo desee.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -269,12 +351,11 @@ export default function Home() {
               </p>
 
               <h2 className="mt-4 text-3xl font-bold sm:text-4xl">
-                ¿A quién quieres sorprender?
+                ¿A quién quieres sorprender hoy?
               </h2>
 
               <p className="mx-auto mt-4 max-w-xl text-slate-200">
-                Crea ahora una dedicatoria personalizada y conviértela en un
-                recuerdo que podrá guardar para siempre.
+                Crea ahora una dedicatoria personalizada y conviértela en un recuerdo digital que podrá guardar y atesorar para siempre.
               </p>
 
               <Link
