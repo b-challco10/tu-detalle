@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/"], // Evita que los motores de búsqueda indexen tus endpoints backend
+      disallow: ["/api/"],
     },
-    sitemap: "https://tu-detalle.com/sitemap.xml",
+    sitemap: "https://www.tu-detalle.com/sitemap.xml",
   };
 }
