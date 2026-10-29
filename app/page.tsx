@@ -14,10 +14,32 @@ import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { TemplateGrid } from "@/components/templates/TemplateGrid";
 import { getAllTemplates } from "@/lib/templates/all"; 
-
+import { StatsShowcase, type StatItem } from "@/components/home/StatsShowcase";
+import { getCreatedRounded } from "@/lib/stats";
 export const revalidate = 60;
 export default async function Home() {                    // ahora async
-  const templates = await getAllTemplates();
+  const [templates, createdValue] = await Promise.all([
+  getAllTemplates(),
+  getCreatedRounded(),
+]);
+
+const categoriesCount = new Set(templates.map((t) => t.category)).size;
+
+const stats: StatItem[] = [
+  ...(createdValue
+    ? [{ icon: "created" as const, value: createdValue, prefix: "+", label: "detalles creados" }]
+    : []),
+  {
+    icon: "templates",
+    value: templates.length,
+    label: templates.length === 1 ? "plantilla para elegir" : "plantillas para elegir",
+  },
+  {
+    icon: "categories",
+    value: categoriesCount,
+    label: categoriesCount === 1 ? "ocasión" : "ocasiones y estilos",
+  },
+];
   return (
     <>
       <Navbar />
@@ -150,7 +172,12 @@ export default async function Home() {                    // ahora async
             </div>
           </div>
         </section>
-
+{/* ESTADÍSTICAS */}
+<section className="relative px-4 pb-6 sm:px-6 lg:px-8">
+  <div className="mx-auto max-w-5xl">
+    <StatsShowcase items={stats} />
+  </div>
+</section>
         {/* ================= PLANTILLAS ================= */}
         <section
           id="plantillas"
