@@ -32,42 +32,7 @@ export const templates: Template[] = [
       },
     ],
   },
-    {
-    id: "universo",
-    slug: "universo",
-    name: "Universo de Amor",
-    description:
-      "Galaxia de corazones 3D brillantes, fotos flotantes en cristal y música de fondo",
-    category: "Romántica",
-    preview: "/templates/dedica3.png",
-    active: true,
-    schema: [
-      {
-        id: "title",
-        type: "text",
-        label: "Título principal",
-        placeholder: "Universo de Amor",
-      },
-      {
-        id: "subtitle",
-        type: "text",
-        label: "Subtítulo",
-        placeholder: "Cada corazón es un momento contigo",
-      },
-      {
-        id: "message",
-        type: "textarea",
-        label: "Mensaje",
-        placeholder: "Escribe tu dedicatoria...",
-      },
-      { id: "photo1", type: "image", label: "Foto 1" },
-      { id: "photo2", type: "image", label: "Foto 2" },
-      { id: "photo3", type: "image", label: "Foto 3" },
-      { id: "bgMusic", type: "audio", label: "Música de fondo" },
-      { id: "primaryColor", type: "color", label: "Color principal" },
-      { id: "secondaryColor", type: "color", label: "Color secundario" },
-    ],
-  },
+    
   {
   id: "ramo-amarillo",
   slug: "ramo-amarillo",
@@ -286,6 +251,42 @@ export const templates: Template[] = [
     { id: "photo3", type: "image", label: "Foto 3 (Momento 3)" },
   ],
 },
+{
+    id: "universo",
+    slug: "universo",
+    name: "Universo de Amor",
+    description:
+      "Galaxia de corazones 3D brillantes, fotos flotantes en cristal y música de fondo",
+    category: "Romántica",
+    preview: "/templates/dedica3.png",
+    active: true,
+    schema: [
+      {
+        id: "title",
+        type: "text",
+        label: "Título principal",
+        placeholder: "Universo de Amor",
+      },
+      {
+        id: "subtitle",
+        type: "text",
+        label: "Subtítulo",
+        placeholder: "Cada corazón es un momento contigo",
+      },
+      {
+        id: "message",
+        type: "textarea",
+        label: "Mensaje",
+        placeholder: "Escribe tu dedicatoria...",
+      },
+      { id: "photo1", type: "image", label: "Foto 1" },
+      { id: "photo2", type: "image", label: "Foto 2" },
+      { id: "photo3", type: "image", label: "Foto 3" },
+      { id: "bgMusic", type: "audio", label: "Música de fondo" },
+      { id: "primaryColor", type: "color", label: "Color principal" },
+      { id: "secondaryColor", type: "color", label: "Color secundario" },
+    ],
+  },
   {
     id: "love-galaxy",
     slug: "love-galaxy",
