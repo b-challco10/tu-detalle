@@ -256,7 +256,7 @@ export const templates: Template[] = [
   slug: "cementerio",
   name: "Cementerio de Fantasmas",
   description:
-    "Un cementerio 3D de noche con luna, árboles secos y tres fantasmas: uno guarda tus fotos, otro tu música y otro una carta de Halloween que se abre desde un sobre",
+    "Un cementerio 2D de noche con luna, árboles secos y tres fantasmas: uno guarda tus fotos, otro tu música y otro una carta de Halloween que se abre desde un sobre",
   category: "Halloween",
   preview: "/templates/cementerio.png",
   active: true,
