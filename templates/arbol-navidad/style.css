@@ -1,0 +1,126 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%; overflow: hidden;
+  background: #070b1f; color: #eef4ff;
+  font-family: "Work Sans", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+canvas { display: block; position: fixed; inset: 0; z-index: 0; touch-action: none; cursor: grab; }
+canvas:active { cursor: grabbing; }
+
+/* Pista */
+.hint {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  z-index: 20; pointer-events: none; text-align: center;
+  font-size: 0.85rem; letter-spacing: 0.02em; color: #cfe3ff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9);
+  transition: opacity 0.6s ease;
+}
+.hint { bottom: 2rem; width: 90%; opacity: 0; animation: fadeIn 2s ease 3s forwards; }
+.hint.is-gone { opacity: 0 !important; animation: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Música */
+#musicBtn, #lightsBtn {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50;
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid rgba(255, 232, 160, 0.5); background: rgba(240, 180, 60, 0.22);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  color: #fff; font-size: 1.4rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+#musicBtn:hover, #lightsBtn:hover { transform: scale(1.08); background: rgba(240, 180, 60, 0.4); }
+#musicBtn.playing { box-shadow: 0 0 24px rgba(255, 232, 160, 0.7); background: rgba(240, 180, 60, 0.5); }
+
+/* Galería */
+.gallery-modal {
+  position: fixed; inset: 0; z-index: 100; background: rgba(2, 5, 14, 0.94);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.gallery-modal.open { opacity: 1; visibility: visible; }
+.gallery-content { position: relative; width: min(92vw, 520px); max-height: 85vh; display: flex; flex-direction: column; align-items: center; }
+.close-btn {
+  position: absolute; top: -48px; right: 0; width: 40px; height: 40px; border-radius: 50%;
+  border: none; background: rgba(255, 255, 255, 0.15); color: #fff; font-size: 1.3rem; cursor: pointer;
+}
+.close-btn:hover { background: rgba(240, 180, 60, 0.55); }
+.carousel { position: relative; width: 100%; overflow: hidden; border-radius: 16px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6); }
+.carousel-track { display: flex; transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.carousel-slide { min-width: 100%; aspect-ratio: 3 / 4; background: #0f1c2e; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nav-btn {
+  position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px;
+  border-radius: 50%; border: none; background: rgba(240, 180, 60, 0.4); color: #fff;
+  font-size: 1.8rem; cursor: pointer; z-index: 5;
+}
+.nav-btn:hover { background: rgba(240, 180, 60, 0.7); }
+.nav-btn.prev { left: 10px; } .nav-btn.next { right: 10px; }
+.dots { display: flex; gap: 10px; margin-top: 1.2rem; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: background 0.25s, transform 0.25s; }
+.dot.active { background: #ffe8a0; transform: scale(1.25); box-shadow: 0 0 10px rgba(255, 232, 160, 0.8); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hint { bottom: 2rem; max-width: 60vw; }
+  #musicBtn, #lightsBtn { width: 46px; height: 46px; bottom: 1.3rem; font-size: 1.25rem; }
+  #musicBtn { right: 1.2rem; }
+  #lightsBtn { left: 1.2rem; }
+  .lights-panel { left: 1.2rem; bottom: calc(1.3rem + 46px + 0.6rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint { animation-duration: 0.01s; animation-delay: 0s; }
+}
+
+/* Icono de música */
+#musicBtn .slash { opacity: 1; transition: opacity 0.25s ease; }
+#musicBtn.playing .slash { opacity: 0; }
+
+/* Juegos de luces */
+#lightsBtn { right: auto; left: 1.5rem; }
+#lightsBtn.active { box-shadow: 0 0 24px rgba(255, 232, 160, 0.7); background: rgba(240, 180, 60, 0.5); }
+
+.lights-panel {
+  position: fixed; left: 1.5rem; bottom: calc(1.5rem + 52px + 0.7rem); z-index: 50;
+  padding: 0.7rem 0.8rem 0.8rem; border-radius: 1.1rem;
+  background: rgba(8, 14, 40, 0.78); border: 1px solid rgba(255, 232, 160, 0.3);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  opacity: 0; transform: translateY(8px) scale(0.96); transform-origin: bottom left;
+  width: 196px; max-height: 70vh; overflow-y: auto;
+  pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.lights-panel.open { opacity: 1; transform: none; pointer-events: auto; }
+.lights-name { font-size: 0.8rem; color: #ffe9a8; margin-bottom: 0.55rem; text-align: center; min-height: 1.2em; }
+.lights-grid { display: grid; grid-template-columns: repeat(3, 40px); gap: 0.6rem; }
+.swatch {
+  width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.swatch:hover { transform: scale(1.1); }
+.swatch:focus-visible, #lightsBtn:focus-visible { outline: 2px solid #ffe8a0; outline-offset: 3px; }
+.swatch.active { border-color: #fff; box-shadow: 0 0 0 2px rgba(8, 14, 40, 0.9), 0 0 14px rgba(255, 255, 255, 0.7); }
+
+.fx-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; margin-top: 0.8rem; }
+.fx-chip, .auto-btn {
+  font-family: inherit; font-size: 0.78rem; color: #eef4ff; cursor: pointer;
+  padding: 0.42rem 0.4rem; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.22);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.fx-chip:hover, .auto-btn:hover { background: rgba(255, 255, 255, 0.16); }
+.fx-chip.active { background: rgba(240, 180, 60, 0.35); border-color: #ffe8a0; color: #fff; }
+.auto-btn { width: 100%; margin-top: 0.7rem; padding: 0.5rem; font-weight: 600; }
+.auto-btn.active { background: rgba(240, 180, 60, 0.5); border-color: #ffe8a0; color: #fff; }
+.fx-chip:focus-visible, .auto-btn:focus-visible { outline: 2px solid #ffe8a0; outline-offset: 2px; }

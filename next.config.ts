@@ -10,7 +10,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // ...lo que ya tengas aquí se queda igual
+  async headers() {
+    return [
+      {
+        source: "/textures/:path*",
+        headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
