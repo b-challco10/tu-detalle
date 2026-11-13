@@ -38,7 +38,7 @@ export const templates: Template[] = [
   name: "Árbol de Navidad Interactivo 3D",
   description: "Árbol navideño 3D que giras libremente, con fotos colgando como polaroids entre las luces. Toca cada foto para verla, con nieve, galería de 4 fotos y música de fondo",
   category: "Navideña",
-  preview: "/templates/arbol-navidad-3d.png",
+  preview: "/templates/navidad.png",
   active: true,
   schema: [
     { id: "photo1", type: "image", label: "Foto 1" },
