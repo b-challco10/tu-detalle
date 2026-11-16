@@ -48,6 +48,20 @@ export const templates: Template[] = [
     { id: "bgMusic", type: "audio", label: "Música de fondo (opcional)" },
   ],
 },
+{
+  id: "muneco-nieve",
+  slug: "muneco-nieve",
+  name: "Muñeco de Nieve 3D",
+  description: "Muñeco de nieve en un globo 3D que te mira, te saluda y reacciona cuando lo tocas. Agita el globo, lánzale bolas de nieve y personalízalo con tu nombre y tu música",
+  category: "Navideña",
+  preview: "/templates/muneco-nieve.png",
+  active: true,
+  schema: [
+    { id: "nombre", type: "text", label: "Nombre (para la placa del globo)", placeholder: "Ej: Valentina" },
+    { id: "mensaje", type: "text", label: "Mensaje corto del muñeco (opcional)", placeholder: "Ej: Te quiero mucho" },
+    { id: "bgMusic", type: "audio", label: "Música de fondo (opcional)" },
+  ],
+},
   {
   id: "ramo-amarillo",
   slug: "ramo-amarillo",
